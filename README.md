@@ -75,3 +75,11 @@ Then,
 ```Bash
 mvn clean javafx:run
 ```
+
+## Structure
+- `~com/larryjune/dealership/model`
+  - Contains all the classes that we'll use. This is where all logic goes
+- `~com/larryjune/dealership/controller`
+  - Contains all UI files.
+- `~com/larryjune/dealership/service`
+  - Maintains DB connections and SQL files. 
