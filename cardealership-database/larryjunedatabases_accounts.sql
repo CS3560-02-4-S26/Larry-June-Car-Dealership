@@ -27,6 +27,7 @@ CREATE TABLE `accounts` (
   `firstName` char(255) DEFAULT NULL,
   `lastName` char(255) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
+  `accountPassword` char(15) DEFAULT NULL,
   PRIMARY KEY (`accountID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +38,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'John','Smith','951-555-1001'),(2,'Sarah','Johnson','951-555-1002'),(3,'Mike','Brown','951-555-1003'),(4,'Emily','Davis','951-555-1004'),(5,'Chris','Wilson','951-555-1005'),(6,'Laura','Martinez','951-555-1006'),(7,'David','Anderson','951-555-1007'),(8,'Sophia','Taylor','951-555-1008');
+INSERT INTO `accounts` VALUES (1,'John','Smith','951-555-1001','abcdefg'),(2,'Sarah','Johnson','951-555-1002','abcdefg'),(3,'Mike','Brown','951-555-1003','abcdefg'),(4,'Emily','Davis','951-555-1004','abcdefg'),(5,'Chris','Wilson','951-555-1005','abcdefg'),(6,'Laura','Martinez','951-555-1006','abcdefg'),(7,'David','Anderson','951-555-1007','abcdefg'),(8,'Sophia','Taylor','951-555-1008','abcdefg');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-11 18:21:12
+-- Dump completed on 2026-04-13 23:17:22
