@@ -1,23 +1,22 @@
 package com.larryjune.dealership;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/com/larryjune/dealership/MainScreen.fxml")
+        );
+        Parent root = loader.load();
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
+        Scene scene = new Scene(root, 1000, 900);
+        stage.setTitle("Larry June Dealership");
         stage.setScene(scene);
         stage.show();
     }
@@ -25,5 +24,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }
