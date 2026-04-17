@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: larryjunedatabases
+-- Host: 127.0.0.1    Database: larryjunedatabase
 -- ------------------------------------------------------
 -- Server version	8.0.45
 
@@ -16,31 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `accidentdata`
+-- Table structure for table `customeraccount`
 --
 
-DROP TABLE IF EXISTS `accidentdata`;
+DROP TABLE IF EXISTS `customeraccount`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `accidentdata` (
-  `accidentID` int NOT NULL AUTO_INCREMENT,
-  `vehicleID` int DEFAULT NULL,
-  `dateOFAccident` date DEFAULT NULL,
-  `descOfAccident` char(255) DEFAULT NULL,
-  PRIMARY KEY (`accidentID`),
-  KEY `vehicleID` (`vehicleID`),
-  CONSTRAINT `accidentdata_ibfk_1` FOREIGN KEY (`vehicleID`) REFERENCES `vehicledata` (`vehicleID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `customeraccount` (
+  `customerAccountID` int DEFAULT NULL,
+  KEY `customerAccountID` (`customerAccountID`),
+  CONSTRAINT `customeraccount_ibfk_1` FOREIGN KEY (`customerAccountID`) REFERENCES `accounts` (`accountID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `accidentdata`
+-- Dumping data for table `customeraccount`
 --
 
-LOCK TABLES `accidentdata` WRITE;
-/*!40000 ALTER TABLE `accidentdata` DISABLE KEYS */;
-INSERT INTO `accidentdata` VALUES (1,1,'2025-01-12','Rear-end collision at stoplight'),(2,6,'2025-04-10','Intersection T-bone accident'),(3,7,'2025-05-01','Deer collision on rural road'),(4,8,'2025-05-19','Multi-car freeway pileup'),(5,4,'2025-10-05','Single vehicle curb collision');
-/*!40000 ALTER TABLE `accidentdata` ENABLE KEYS */;
+LOCK TABLES `customeraccount` WRITE;
+/*!40000 ALTER TABLE `customeraccount` DISABLE KEYS */;
+INSERT INTO `customeraccount` VALUES (4),(5),(8);
+/*!40000 ALTER TABLE `customeraccount` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-13 23:17:22
+-- Dump completed on 2026-04-16 21:50:16

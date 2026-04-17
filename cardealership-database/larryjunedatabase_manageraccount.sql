@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: larryjunedatabases
+-- Host: 127.0.0.1    Database: larryjunedatabase
 -- ------------------------------------------------------
 -- Server version	8.0.45
 
@@ -16,28 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `employeeaccount`
+-- Table structure for table `manageraccount`
 --
 
-DROP TABLE IF EXISTS `employeeaccount`;
+DROP TABLE IF EXISTS `manageraccount`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `employeeaccount` (
-  `employeeAccountID` int DEFAULT NULL,
-  `totalSales` int DEFAULT NULL,
-  KEY `employeeAccountID` (`employeeAccountID`),
-  CONSTRAINT `employeeaccount_ibfk_1` FOREIGN KEY (`employeeAccountID`) REFERENCES `accounts` (`accountID`)
+CREATE TABLE `manageraccount` (
+  `managerAccountID` int DEFAULT NULL,
+  `managerstatus` char(255) DEFAULT NULL,
+  KEY `managerAccountID` (`managerAccountID`),
+  CONSTRAINT `manageraccount_ibfk_1` FOREIGN KEY (`managerAccountID`) REFERENCES `employeeaccount` (`employeeAccountID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `employeeaccount`
+-- Dumping data for table `manageraccount`
 --
 
-LOCK TABLES `employeeaccount` WRITE;
-/*!40000 ALTER TABLE `employeeaccount` DISABLE KEYS */;
-INSERT INTO `employeeaccount` VALUES (1,15),(2,22),(3,40),(6,10),(7,55);
-/*!40000 ALTER TABLE `employeeaccount` ENABLE KEYS */;
+LOCK TABLES `manageraccount` WRITE;
+/*!40000 ALTER TABLE `manageraccount` DISABLE KEYS */;
+INSERT INTO `manageraccount` VALUES (3,'GONE'),(7,'GONE');
+/*!40000 ALTER TABLE `manageraccount` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-13 23:17:22
+-- Dump completed on 2026-04-16 21:50:15

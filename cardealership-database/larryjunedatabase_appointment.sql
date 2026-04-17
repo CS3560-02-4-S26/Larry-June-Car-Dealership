@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: larryjunedatabases
+-- Host: 127.0.0.1    Database: larryjunedatabase
 -- ------------------------------------------------------
 -- Server version	8.0.45
 
@@ -16,37 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `sale`
+-- Table structure for table `appointment`
 --
 
-DROP TABLE IF EXISTS `sale`;
+DROP TABLE IF EXISTS `appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sale` (
-  `saleID` int NOT NULL AUTO_INCREMENT,
-  `vehicleID` int DEFAULT NULL,
+CREATE TABLE `appointment` (
   `employeeAccountID` int DEFAULT NULL,
   `customerAccountID` int DEFAULT NULL,
-  `dateOFSale` date DEFAULT NULL,
-  `amountPaid` int DEFAULT NULL,
-  PRIMARY KEY (`saleID`),
-  KEY `vehicleID` (`vehicleID`),
-  KEY `employeeAccountID` (`employeeAccountID`),
+  `apointmentDate` date DEFAULT NULL,
+  `typeOfAppointment` char(255) DEFAULT NULL,
   KEY `customerAccountID` (`customerAccountID`),
-  CONSTRAINT `sale_ibfk_1` FOREIGN KEY (`vehicleID`) REFERENCES `vehicledata` (`vehicleID`),
-  CONSTRAINT `sale_ibfk_2` FOREIGN KEY (`employeeAccountID`) REFERENCES `employeeaccount` (`employeeAccountID`),
-  CONSTRAINT `sale_ibfk_3` FOREIGN KEY (`customerAccountID`) REFERENCES `customeraccount` (`customerAccountID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `employeeAccountID` (`employeeAccountID`),
+  CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`customerAccountID`) REFERENCES `customeraccount` (`customerAccountID`),
+  CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`employeeAccountID`) REFERENCES `employeeaccount` (`employeeAccountID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sale`
+-- Dumping data for table `appointment`
 --
 
-LOCK TABLES `sale` WRITE;
-/*!40000 ALTER TABLE `sale` DISABLE KEYS */;
-INSERT INTO `sale` VALUES (1,1,1,4,'2025-07-01',18000),(2,2,2,5,'2025-07-03',24000),(3,10,3,4,'2025-07-22',41500);
-/*!40000 ALTER TABLE `sale` ENABLE KEYS */;
+LOCK TABLES `appointment` WRITE;
+/*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+INSERT INTO `appointment` VALUES (1,4,'2025-07-02','Test Drive'),(2,5,'2025-07-04','Financing Consultation'),(3,8,'2025-07-06','Vehicle Inquiry'),(6,4,'2025-07-09','Service Follow-up'),(7,5,'2025-07-11','Trade-in Evaluation'),(1,8,'2025-07-13','Test Drive'),(2,4,'2025-07-16','Purchase Discussion'),(3,5,'2025-07-19','Final Paperwork'),(6,8,'2025-07-21','Warranty Consultation'),(7,4,'2025-07-23','Vehicle Pickup');
+/*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-13 23:17:22
+-- Dump completed on 2026-04-16 21:50:16

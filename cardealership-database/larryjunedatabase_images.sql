@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: larryjunedatabases
+-- Host: 127.0.0.1    Database: larryjunedatabase
 -- ------------------------------------------------------
 -- Server version	8.0.45
 
@@ -16,30 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `accounts`
+-- Table structure for table `images`
 --
 
-DROP TABLE IF EXISTS `accounts`;
+DROP TABLE IF EXISTS `images`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `accounts` (
-  `accountID` int NOT NULL AUTO_INCREMENT,
-  `firstName` char(255) DEFAULT NULL,
-  `lastName` char(255) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `accountPassword` char(15) DEFAULT NULL,
-  PRIMARY KEY (`accountID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `images` (
+  `imageID` int NOT NULL AUTO_INCREMENT,
+  `vehicleID` int DEFAULT NULL,
+  `imageURL` char(255) DEFAULT NULL,
+  PRIMARY KEY (`imageID`),
+  KEY `vehicleID` (`vehicleID`),
+  CONSTRAINT `images_ibfk_1` FOREIGN KEY (`vehicleID`) REFERENCES `vehicledata` (`vehicleID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `accounts`
+-- Dumping data for table `images`
 --
 
-LOCK TABLES `accounts` WRITE;
-/*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'John','Smith','951-555-1001','abcdefg'),(2,'Sarah','Johnson','951-555-1002','abcdefg'),(3,'Mike','Brown','951-555-1003','abcdefg'),(4,'Emily','Davis','951-555-1004','abcdefg'),(5,'Chris','Wilson','951-555-1005','abcdefg'),(6,'Laura','Martinez','951-555-1006','abcdefg'),(7,'David','Anderson','951-555-1007','abcdefg'),(8,'Sophia','Taylor','951-555-1008','abcdefg');
-/*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
+LOCK TABLES `images` WRITE;
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+INSERT INTO `images` VALUES (1,5,'TOYOTA.png');
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-13 23:17:22
+-- Dump completed on 2026-04-16 21:50:16
