@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--Controller Connection-->
+
+<VBox alignment="TOP_CENTER" style="-fx-padding: 10px 10px 10px 10px;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.MainScreenController">
+
+
+   <children>
+      <ImageView accessibleText="Decorative image of a car" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@civic.png" />
+         </image>
+      </ImageView>
+      <Label style="-fx-text-fill: #222222; -fx-font-weight: bold;" text="Car Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label text="\$$ Car Price" />
+      <Label text="Brief description of the car" wrapText="true" />
+   </children>
+</VBox>
