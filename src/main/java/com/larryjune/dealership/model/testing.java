@@ -1,14 +1,10 @@
 package com.larryjune.dealership.model;
 
 import java.util.ArrayList;
+import java.sql.Date;
 
 public class testing {
     public static void main(String[] args) throws Exception {
-        ArrayList<Vehicle> s = DBControl.fetchVehicleData();
-        for(int i = 0; i < s.size(); i++){
-            Vehicle t = s.get(i);
-            System.out.println(t.getYear() + " " + t.getMake() + " " + t.getModel());
-        }
-        System.out.println(DBControl.InsertVehicle(new Vehicle(0,"1877CAR",9999999,"Honda", "Accord", "White", 2029, "IDK", true, 90909, "Damn son", 1)));
+        System.out.println(DBControl.InsertService(new Service(67, 6, Date.valueOf("2001-06-07"), "Mad cuz bad", 676767.0, 676767)));
     }
 }
