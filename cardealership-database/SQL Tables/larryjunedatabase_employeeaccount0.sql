@@ -16,36 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `damage`
+-- Table structure for table `employeeaccount`
 --
 
-DROP TABLE IF EXISTS `damage`;
+DROP TABLE IF EXISTS `employeeaccount`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `damage` (
-  `damageID` int NOT NULL AUTO_INCREMENT,
-  `vehicleID` int DEFAULT NULL,
-  `locationOfDamage` char(255) DEFAULT NULL,
-  `severity` char(255) DEFAULT NULL,
-  `repairCost` int DEFAULT NULL,
-  `accidentID` int DEFAULT NULL,
-  `airbagDeployment` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`damageID`),
-  KEY `vehicleID` (`vehicleID`),
-  KEY `accidentID` (`accidentID`),
-  CONSTRAINT `damage_ibfk_1` FOREIGN KEY (`vehicleID`) REFERENCES `vehicledata` (`vehicleID`),
-  CONSTRAINT `damage_ibfk_2` FOREIGN KEY (`accidentID`) REFERENCES `accidentdata` (`accidentID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `employeeaccount` (
+  `employeeAccountID` int DEFAULT NULL,
+  `totalSales` decimal(15,2) DEFAULT NULL,
+  KEY `employeeAccountID` (`employeeAccountID`),
+  CONSTRAINT `employeeaccount_ibfk_1` FOREIGN KEY (`employeeAccountID`) REFERENCES `accounts` (`accountID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `damage`
+-- Dumping data for table `employeeaccount`
 --
 
-LOCK TABLES `damage` WRITE;
-/*!40000 ALTER TABLE `damage` DISABLE KEYS */;
-INSERT INTO `damage` VALUES (1,1,'Rear bumper','Moderate',3200,1,0),(2,4,'Front suspension','Severe',7800,5,0),(3,6,'Front end frame','Severe',10500,2,1),(4,7,'Hood and grille','Severe',6000,3,0),(5,8,'Multiple panels','Severe',15000,4,1);
-/*!40000 ALTER TABLE `damage` ENABLE KEYS */;
+LOCK TABLES `employeeaccount` WRITE;
+/*!40000 ALTER TABLE `employeeaccount` DISABLE KEYS */;
+INSERT INTO `employeeaccount` VALUES (1,15.00),(2,22.00),(3,40.00),(6,10.00),(7,55.00);
+/*!40000 ALTER TABLE `employeeaccount` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-16 21:50:15
+-- Dump completed on 2026-04-20 22:11:46
