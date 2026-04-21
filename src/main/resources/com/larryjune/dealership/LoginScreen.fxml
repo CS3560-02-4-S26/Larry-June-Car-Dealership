@@ -60,11 +60,15 @@
                         <Label prefHeight="34.0" prefWidth="168.0"
                                style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: black;"
                                text="Login" />
-
-                        <TextField promptText="Username"
+                              
+                       <!--Username-->
+                        <TextField fx:id = "usernameField"
+                                    promptText="Username"
+                                    
                                    style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-color: #d8d8d8; -fx-border-radius: 8; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
-
-                        <PasswordField promptText="Password"
+                     <!--Password-->
+                        <PasswordField fx:id = "passwordField"
+                                 promptText="Password"
                                        style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-color: #d8d8d8; -fx-border-radius: 8; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
 
                         <HBox spacing="20.0" alignment="CENTER">
