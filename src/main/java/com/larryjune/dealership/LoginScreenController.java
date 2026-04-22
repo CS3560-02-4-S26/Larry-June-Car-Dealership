@@ -16,13 +16,15 @@ public class LoginScreenController {
     @FXML
     private TextField usernameField;
 
+    
     @FXML
     private PasswordField passwordField;
-
+   //Hardcoded credentials for the Manager PW and Username
     private static final String ManagerUsername = "YunoMiles";
     private static final String ManagerPassword = "676921";
 
     @FXML
+    //Handles the back button to return to main screen in Login Page
     private void handleBack(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(
                 getClass().getResource("/com/larryjune/dealership/MainScreen.fxml"));
@@ -34,6 +36,8 @@ public class LoginScreenController {
     }
 
    @FXML
+   //Handles submit button to check if Username and Password correct
+   //If not print error into Terminal 
 private void handleSubmitLogin(ActionEvent event) throws IOException {
     String username = usernameField.getText().trim();
     String password = passwordField.getText().trim();
