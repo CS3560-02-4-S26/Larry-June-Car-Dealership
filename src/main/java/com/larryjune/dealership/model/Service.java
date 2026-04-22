@@ -4,16 +4,16 @@ import java.sql.Date;
 
 public class Service {
     private int serviceID;
-    private int vehicleID;
+    private Vehicle vehicle;
     private Date dateOfService;
     private String description;
     private double cost;
     private int mileageAtService;
 
-    public Service(int serviceID, int vehicleID, Date dateOfService, String description, double cost,
+    public Service(int serviceID, Vehicle vehicle, Date dateOfService, String description, double cost,
             int mileageAtService) {
         this.serviceID = serviceID;
-        this.vehicleID = vehicleID;
+        this.vehicle = vehicle;
         this.dateOfService = dateOfService;
         this.description = description;
         this.cost = cost;
@@ -28,12 +28,12 @@ public class Service {
         this.serviceID = serviceID;
     }
 
-    public int getVehicleID() {
-        return vehicleID;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleID(int vehicleID) {
-        this.vehicleID = vehicleID;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public Date getDateOfService() {
@@ -66,5 +66,10 @@ public class Service {
 
     public void setMileageAtService(int mileageAtService) {
         this.mileageAtService = mileageAtService;
+    }
+
+    @Override
+    public String toString(){
+        return "{" + serviceID + ", " + vehicle + ", " + dateOfService + ", " + description + ", " + cost + ", " + mileageAtService + "}";
     }
 }

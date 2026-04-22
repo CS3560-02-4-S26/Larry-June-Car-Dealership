@@ -16,27 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `customeraccount`
+-- Table structure for table `service`
 --
 
-DROP TABLE IF EXISTS `customeraccount`;
+DROP TABLE IF EXISTS `service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `customeraccount` (
-  `customerAccountID` int DEFAULT NULL,
-  KEY `customerAccountID` (`customerAccountID`),
-  CONSTRAINT `customeraccount_ibfk_1` FOREIGN KEY (`customerAccountID`) REFERENCES `accounts` (`accountID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `service` (
+  `serviceID` int NOT NULL AUTO_INCREMENT,
+  `vehicleID` int DEFAULT NULL,
+  `dateOfService` date DEFAULT NULL,
+  `descriptionOFService` varchar(255) DEFAULT NULL,
+  `cost` decimal(15,2) DEFAULT NULL,
+  `mileage` int DEFAULT NULL,
+  PRIMARY KEY (`serviceID`),
+  KEY `vehicleID` (`vehicleID`),
+  CONSTRAINT `service_ibfk_1` FOREIGN KEY (`vehicleID`) REFERENCES `vehicledata` (`vehicleID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customeraccount`
+-- Dumping data for table `service`
 --
 
-LOCK TABLES `customeraccount` WRITE;
-/*!40000 ALTER TABLE `customeraccount` DISABLE KEYS */;
-INSERT INTO `customeraccount` VALUES (4),(5),(8);
-/*!40000 ALTER TABLE `customeraccount` ENABLE KEYS */;
+LOCK TABLES `service` WRITE;
+/*!40000 ALTER TABLE `service` DISABLE KEYS */;
+INSERT INTO `service` VALUES (1,3,'2025-03-01','Transmission fluid flush',300.00,76000),(2,6,'2025-04-18','Clutch adjustment and alignment',600.00,32000),(3,7,'2025-05-02','Oil change and air filter replacement',180.00,40000),(4,10,'2025-06-28','Detailing and full inspection service',200.00,14000);
+/*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-16 21:50:16
+-- Dump completed on 2026-04-20 22:11:46

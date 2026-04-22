@@ -4,22 +4,22 @@ import java.sql.Date;
 
 public class Damage {
     private int damageID;
-    private int vehicleID;
+    private Vehicle vehicle;
     private Date dateOfDamage;
     private String damageLocation;
     private String severity;
     private double repairCost;
-    private int accidentID;
+    private Accident accident;
 
-    public Damage(int damageID, int vehicleID, Date dateOfDamage, String damageLocation, String severity,
-            double repairCost, int accidentID) {
+    public Damage(int damageID, Vehicle vehicle, Date dateOfDamage, String damageLocation, String severity,
+            double repairCost, Accident accident) {
         this.damageID = damageID;
-        this.vehicleID = vehicleID;
+        this.vehicle = vehicle;
         this.dateOfDamage = dateOfDamage;
         this.damageLocation = damageLocation;
         this.severity = severity;
         this.repairCost = repairCost;
-        this.accidentID = accidentID;
+        this.accident = accident;
     }
 
     public int getDamageID() {
@@ -30,12 +30,12 @@ public class Damage {
         this.damageID = damageID;
     }
 
-    public int getVehicleID() {
-        return vehicleID;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleID(int vehicleID) {
-        this.vehicleID = vehicleID;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public Date getDateOfDamage() {
@@ -70,11 +70,16 @@ public class Damage {
         this.repairCost = repairCost;
     }
 
-    public int getAccidentID() {
-        return accidentID;
+    public Accident getAccident() {
+        return accident;
     }
 
-    public void setAccidentID(int accidentID) {
-        this.accidentID = accidentID;
+    public void setAccident(Accident accident) {
+        this.accident = accident;
+    }
+
+    @Override
+    public String toString(){
+        return "{"+ damageID + ", " + vehicle + ", " + dateOfDamage + ", " + damageLocation + ", " + severity + ", " + repairCost + ", " + accident +"}";
     }
 }

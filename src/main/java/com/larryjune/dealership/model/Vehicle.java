@@ -125,4 +125,10 @@ public class Vehicle {
     public void setPreviousOwnerCount(int previousOwnerCount) {
         this.previousOwnerCount = previousOwnerCount;
     }
+
+    //Test Function
+    @Override
+    public String toString(){
+        return "{" + vehicleID +", "+ vinNumber +", "+ price +", "+ make +", "+ model +", "+ color +", "+ year +", "+ bodyStyle +", "+ isUsed +", "+ mileage +", "+ carStatus +", "+ previousOwnerCount + "}";
+    }
 }

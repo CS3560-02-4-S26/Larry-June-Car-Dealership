@@ -4,8 +4,8 @@ public class Employee extends Account {
     private double totalSalesPerMonth;
 
     public Employee(int accountID, String firstName, String lastName, String email, String phoneNum,
-            String shippingAddress, double totalSalesPerMonth) {
-        super(accountID, firstName, lastName, email, phoneNum, shippingAddress);
+            String shippingAddress, double totalSalesPerMonth, String password) {
+        super(accountID, firstName, lastName, email, phoneNum, shippingAddress, password);
         this.totalSalesPerMonth = totalSalesPerMonth;
     }
 

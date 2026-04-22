@@ -4,8 +4,8 @@ public class Manager extends Employee {
     private String status;
 
     public Manager(int accountID, String firstName, String lastName, String email, String phoneNum,
-            String shippingAddress, double totalSalesPerMonth, String status) {
-        super(accountID, firstName, lastName, email, phoneNum, shippingAddress, totalSalesPerMonth);
+            String shippingAddress, double totalSalesPerMonth, String status, String password) {
+        super(accountID, firstName, lastName, email, phoneNum, shippingAddress, totalSalesPerMonth, password);
         this.status = status;
     }
 

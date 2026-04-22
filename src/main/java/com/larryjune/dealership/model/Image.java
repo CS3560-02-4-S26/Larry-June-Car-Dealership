@@ -34,4 +34,9 @@ public class Image {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
+    @Override
+    public String toString(){
+        return "{" + imageID + ", " + vehicleID + ", " + imagePath + "}";
+    }
 }
