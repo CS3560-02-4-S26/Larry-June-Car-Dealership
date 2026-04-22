@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainScreenController {
-
+        //Handles the login button in Main Screen
     public void handleLogin(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(
             getClass().getResource("/com/larryjune/dealership/LoginScreen.fxml")

@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
+    //Starts the main Application and loads ManScree.Fxml
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/com/larryjune/dealership/MainScreen.fxml")
