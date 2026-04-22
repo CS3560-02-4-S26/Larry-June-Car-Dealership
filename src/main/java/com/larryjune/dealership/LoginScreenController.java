@@ -15,11 +15,10 @@ public class LoginScreenController {
 
     @FXML
     private TextField usernameField;
-
-    
-    @FXML
+     @FXML
     private PasswordField passwordField;
-   //Hardcoded credentials for the Manager PW and Username
+    
+    //Hardcoded credentials for the Manager PW and Username
     private static final String ManagerUsername = "YunoMiles";
     private static final String ManagerPassword = "676921";
 
@@ -41,13 +40,14 @@ public class LoginScreenController {
 private void handleSubmitLogin(ActionEvent event) throws IOException {
     String username = usernameField.getText().trim();
     String password = passwordField.getText().trim();
-
+    //Includes the inputed Username PW to the terminal 
     System.out.println("Username entered: [" + username + "]");
     System.out.println("Password entered: [" + password + "]");
-
+    
+    //If corret print 
     if (username.equals(ManagerUsername) && password.equals(ManagerPassword)) {
         System.out.println("Login matched");
-
+            //Load the Manager UI if correct PW and Username 
         Parent root = FXMLLoader.load(
                 getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml"));
 
