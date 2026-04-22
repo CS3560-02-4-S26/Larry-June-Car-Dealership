@@ -1,0 +1,18 @@
+Importing the database
+1. Go to mySQL Workbench
+2. Create a new database with a memorable name
+3. Create a new Schema titled "larryjunedatabase"
+4. Go to the server tab and select Data Import
+5. Select the first option and get the database files from source/SQL Tables
+6. Check if you have the right database selected which should be "larryjunedatabase"
+7. Press Start Import
+(If you have a small screen size change your resolution on system settings)
+8. Go to the DBConnection.java File on your text editor
+9. Make sure the urls last data entry is the name of the schema you created
+    (Ideally "larryjunedatabase")
+    The user set as the user that created the database (Usually "root")
+    And the Password as whatever you put in when setting up mySQL server
+    (Ideally "ILoveCars2000")
+
+With this the database should be set up and you can freely use the fetch functions
+on the DBControl class.
