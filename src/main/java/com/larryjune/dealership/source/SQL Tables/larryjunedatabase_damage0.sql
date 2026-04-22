@@ -16,28 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `employeeaccount`
+-- Table structure for table `damage`
 --
 
-DROP TABLE IF EXISTS `employeeaccount`;
+DROP TABLE IF EXISTS `damage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `employeeaccount` (
-  `employeeAccountID` int DEFAULT NULL,
-  `totalSales` int DEFAULT NULL,
-  KEY `employeeAccountID` (`employeeAccountID`),
-  CONSTRAINT `employeeaccount_ibfk_1` FOREIGN KEY (`employeeAccountID`) REFERENCES `accounts` (`accountID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `damage` (
+  `damageID` int NOT NULL AUTO_INCREMENT,
+  `vehicleID` int DEFAULT NULL,
+  `locationOfDamage` varchar(255) DEFAULT NULL,
+  `severity` varchar(255) DEFAULT NULL,
+  `repairCost` int DEFAULT NULL,
+  `accidentID` int DEFAULT NULL,
+  `airbagDeployment` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`damageID`),
+  KEY `vehicleID` (`vehicleID`),
+  KEY `accidentID` (`accidentID`),
+  CONSTRAINT `damage_ibfk_1` FOREIGN KEY (`vehicleID`) REFERENCES `vehicledata` (`vehicleID`),
+  CONSTRAINT `damage_ibfk_2` FOREIGN KEY (`accidentID`) REFERENCES `accidentdata` (`accidentID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `employeeaccount`
+-- Dumping data for table `damage`
 --
 
-LOCK TABLES `employeeaccount` WRITE;
-/*!40000 ALTER TABLE `employeeaccount` DISABLE KEYS */;
-INSERT INTO `employeeaccount` VALUES (1,15),(2,22),(3,40),(6,10),(7,55);
-/*!40000 ALTER TABLE `employeeaccount` ENABLE KEYS */;
+LOCK TABLES `damage` WRITE;
+/*!40000 ALTER TABLE `damage` DISABLE KEYS */;
+INSERT INTO `damage` VALUES (1,1,'Rear bumper','Moderate',3200,1,0),(2,4,'Front suspension','Severe',7800,5,0),(3,6,'Front end frame','Severe',10500,2,1),(4,7,'Hood and grille','Severe',6000,3,0),(5,8,'Multiple panels','Severe',15000,4,1);
+/*!40000 ALTER TABLE `damage` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-16 21:50:16
+-- Dump completed on 2026-04-20 22:11:46

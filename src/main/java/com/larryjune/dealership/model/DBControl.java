@@ -10,6 +10,12 @@ import java.util.ArrayList;
 public class DBControl {
     // Fetching
     // NOTE: Dates are always in the format of yyyy-mm-dd
+
+    /**
+     * Fetches all entries from the Accidents Database
+     * @return An ArrayList of Accident Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Accident> fetchAccidents() throws Exception {
         ArrayList<Accident> results = new ArrayList<>();
 
@@ -21,9 +27,11 @@ public class DBControl {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+                int id = rs.getInt("vehicleID");
+                ArrayList<Vehicle> v = fetchVehicleDataAt("vehicleID", ""+id, "=");
                 results.add(new Accident(
                         rs.getInt("accidentID"),
-                        rs.getInt("vehicleID"),
+                        v.get(0),
                         rs.getDate("dateOFAccident"),
                         rs.getString("severity"),
                         rs.getBoolean("airbagDeployment"),
@@ -34,12 +42,20 @@ public class DBControl {
         return results;
     }
 
-    public static ArrayList<Accident> fetchAccidentsAt(String column, String val) throws Exception {
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Accident Objects from the database 
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Accident> fetchAccidentsAt(String column, String val, String sign) throws Exception {
         ArrayList<Accident> results = new ArrayList<>();
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM accidentdata WHERE " + column + " = ?";
+            String sql = "SELECT * FROM accidentdata WHERE " + column + " "+ sign +" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "accidentID":
@@ -67,9 +83,11 @@ public class DBControl {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+                int id = rs.getInt("vehicleID");
+                ArrayList<Vehicle> v = fetchVehicleDataAt("vehicleID", ""+id, "=");
                 results.add(new Accident(
                         rs.getInt("accidentID"),
-                        rs.getInt("vehicleID"),
+                        v.get(0),
                         rs.getDate("dateOFAccident"),
                         rs.getString("severity"),
                         rs.getBoolean("airbagDeployment"),
@@ -80,6 +98,11 @@ public class DBControl {
         return results;
     }
 
+    /**
+     * Fetches all entries from the Accounts Database
+     * @return An ArrayList of Accounts Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Account> fetchAccounts() throws Exception {
         ArrayList<Account> results = new ArrayList<>();
 
@@ -97,13 +120,23 @@ public class DBControl {
                         rs1.getString("lastName"),
                         rs1.getString("email"),
                         rs1.getString("phone"),
-                        rs1.getString("shippingAddress")));
+                        rs1.getString("shippingAddress"),
+                        rs1.getString("accountPassword")
+                    ));
             }
         }
 
         return results;
     }
 
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Account Objects from the database 
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Account> fetchAccountsAt(String column, String val) throws Exception {
         ArrayList<Account> results = new ArrayList<>();
 
@@ -120,6 +153,7 @@ public class DBControl {
                 case "email":
                 case "phone":
                 case "shippingAddress":
+                case "accountPassword":
                     stmt.setString(1, val);
                     break;
                 default:
@@ -135,13 +169,19 @@ public class DBControl {
                         rs1.getString("lastName"),
                         rs1.getString("email"),
                         rs1.getString("phone"),
-                        rs1.getString("shippingAddress")));
+                        rs1.getString("shippingAddress"),
+                        rs1.getString("accountPassword")));
             }
         }
 
         return results;
     }
 
+    /**
+     * Fetches all entries from the Customers Database
+     * @return An ArrayList of Customer Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Customer> fetchCustomer() throws Exception {
         ArrayList<Customer> results = new ArrayList<>();
 
@@ -163,14 +203,23 @@ public class DBControl {
                         rs1.getString("lastName"),
                         rs1.getString("email"),
                         rs1.getString("phone"),
-                        rs1.getString("shippingAddress")));
+                        rs1.getString("shippingAddress"),
+                        rs1.getString("accountPassword")));
             }
         }
 
         return results;
     }
 
-    public static ArrayList<Customer> fetchCustomerAt(String column, String val) throws Exception {
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Customer Objects from the database 
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Customer> fetchCustomerAt(String column, String val, String sign) throws Exception {
         ArrayList<Customer> results = new ArrayList<>();
 
         try (Connection conn = DBConnection.connect()) {
@@ -180,7 +229,7 @@ public class DBControl {
             "acc.shippingAddress " +
             "FROM customeraccount cus "+
             "JOIN accounts acc ON cus.customerAccountID = acc.accountID "+
-            "WHILE " + column + " = ?";
+            "WHERE "+column+" "+sign+" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "accountID":
@@ -191,6 +240,7 @@ public class DBControl {
                 case "email":
                 case "phone":
                 case "shippingAddress":
+                case "accountPassword":
                     stmt.setString(1, val);
                     break;
                 default:
@@ -206,47 +256,57 @@ public class DBControl {
                         rs1.getString("lastName"),
                         rs1.getString("email"),
                         rs1.getString("phone"),
-                        rs1.getString("shippingAddress")));
+                        rs1.getString("shippingAddress"),
+                        rs1.getString("accountPassword")));
             }
         }
 
         return results;
     }
 
+    /**
+     * Fetches all entries from the Damage Database
+     * @return An ArrayList of Damage Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Damage> fetchDamage() throws Exception {
         ArrayList<Damage> results = new ArrayList<>();
 
         try (Connection conn = DBConnection.connect()) {
-            String sql1 = "SELECT * FROM accidentdata";
-            PreparedStatement stmt1 = conn.prepareStatement(sql1);
-            ResultSet rs2 = stmt1.executeQuery();
-
             String sql = "SELECT * FROM damage";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs1 = stmt.executeQuery();
 
             while (rs1.next()) {
+                int vid = rs1.getInt("vehicleID");
+                int aid = rs1.getInt("accidentID");
                 results.add(new Damage(
                         rs1.getInt("damageID"),
-                        rs1.getInt("vehicleID"),
-                        rs2.getDate("dateOFAccident"),
+                        fetchVehicleDataAt("vehicleID", ""+vid, "=").get(0),
+                        fetchAccidentsAt("accidentID", ""+aid, "=").get(0).getDateOfAccident(),
                         rs1.getString("locationOfDamage"),
                         rs1.getString("severity"),
                         rs1.getInt("repairCost"),
-                        rs1.getInt("accidentID")));
+                        fetchAccidentsAt("accidentID", ""+aid, "=").get(0)));
             }
         }
 
         return results;
     }
     
-    public static ArrayList<Damage> fetchDamageAt(String column, String val) throws Exception {
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Damage Objects from the database 
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Damage> fetchDamageAt(String column, String val, String sign) throws Exception {
         ArrayList<Damage> results = new ArrayList<>();
 
         try (Connection conn = DBConnection.connect()) {
-            String sql = "SELECT * FROM damage WHERE " + column + " = ?";
-            String sql1 = "SELECT * FROM accidentdata WHERE accidentdata = ?";
-            PreparedStatement stmt1 = conn.prepareStatement(sql1);
+            String sql = "SELECT * FROM damage WHERE " + column + " "+sign+ " ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "damageID":
@@ -254,11 +314,6 @@ public class DBControl {
                 case "repairCost":
                 case "accidentID":
                     stmt.setInt(1, Integer.parseInt(val));
-                    break;
-                //Note: Date of Accident does not work well right now
-                //Fixing databases later TODO.
-                case "dateOFAccident":
-                    stmt1.setDate(1, Date.valueOf(val));
                     break;
                 case "locationOfDamage":
                 case "severity":
@@ -269,24 +324,29 @@ public class DBControl {
                     break;
             }
             ResultSet rs1 = stmt.executeQuery();
-            ResultSet rs2 = stmt1.executeQuery();
-
 
             while (rs1.next()) {
+                int vid = rs1.getInt("vehicleID");
+                int aid = rs1.getInt("accidentID");
                 results.add(new Damage(
                         rs1.getInt("damageID"),
-                        rs1.getInt("vehicleID"),
-                        rs2.getDate("dateOFAccident"),
+                        fetchVehicleDataAt("vehicleID", ""+vid, "=").get(0),
+                        fetchAccidentsAt("accidentID", ""+aid, "=").get(0).getDateOfAccident(),
                         rs1.getString("locationOfDamage"),
                         rs1.getString("severity"),
                         rs1.getInt("repairCost"),
-                        rs1.getInt("accidentID")));
+                        fetchAccidentsAt("accidentID", ""+aid, "=").get(0)));
             }
         }
 
         return results;
     }
 
+    /**
+     * Fetches all entries from the Employee Database
+     * @return An ArrayList of Employee Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Employee> fetchEmployee() throws Exception {
         ArrayList<Employee> results = new ArrayList<>();
 
@@ -309,14 +369,23 @@ public class DBControl {
                         rs1.getString("email"),
                         rs1.getString("phone"),
                         rs1.getString("shippingAddress"),
-                        rs1.getInt("totalSales")));
+                        rs1.getInt("totalSales"),
+                        rs1.getString("accountPassword")));
             }
         }
 
         return results;
     }
 
-    public static ArrayList<Employee> fetchEmployeeAt(String column, String val) throws Exception {
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Employee Objects from the database 
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Employee> fetchEmployeeAt(String column, String val, String sign) throws Exception {
         ArrayList<Employee> results = new ArrayList<>();
 
         try (Connection conn = DBConnection.connect()) {
@@ -326,7 +395,7 @@ public class DBControl {
             "acc.shippingAddress, emp.totalSales " +
             "FROM employeeaccount emp "+
             "JOIN accounts acc ON emp.employeeAccountID = acc.accountID " +
-            "WHERE "+column+" = ?";
+            "WHERE "+column+" "+sign+" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "accountID":
@@ -338,6 +407,7 @@ public class DBControl {
                 case "email":
                 case "phone":
                 case "shippingAddress":
+                case "accountPassword":
                     stmt.setString(1, val);
                     break;
                 default:
@@ -354,13 +424,19 @@ public class DBControl {
                         rs1.getString("email"),
                         rs1.getString("phone"),
                         rs1.getString("shippingAddress"),
-                        rs1.getInt("totalSales")));
+                        rs1.getInt("totalSales"),
+                        rs1.getString("accountPassword")));
             }
         }
 
         return results;
     }
 
+    /**
+     * Fetches all entries from the Images Database
+     * @return An ArrayList of Images Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Image> fetchImages() throws Exception {
         ArrayList<Image> results = new ArrayList<>();
 
@@ -382,6 +458,14 @@ public class DBControl {
         return results;
     }
 
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Image Objects from the database 
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Image> fetchImagesAt(String column, String val) throws Exception {
         ArrayList<Image> results = new ArrayList<>();
 
@@ -414,6 +498,11 @@ public class DBControl {
         return results;
     }
 
+    /**
+     * Fetches all entries from the Managers Database
+     * @return An ArrayList of Managers Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Manager> fetchManagers() throws Exception {
         ArrayList<Manager> results = new ArrayList<>();
 
@@ -438,14 +527,23 @@ public class DBControl {
                         rs1.getString("phone"),
                         rs1.getString("shippingAddress"),
                         rs1.getInt("totalSales"),
-                        rs1.getString("managerstatus")));
+                        rs1.getString("managerstatus"),
+                        rs1.getString("accountPassword")));
             }
         }
 
         return results;
     }
 
-    public static ArrayList<Manager> fetchManagersAt(String column, String val) throws Exception {
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Manager Objects from the database 
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Manager> fetchManagersAt(String column, String val, String sign) throws Exception {
         ArrayList<Manager> results = new ArrayList<>();
 
         try (Connection conn = DBConnection.connect()) {
@@ -456,7 +554,7 @@ public class DBControl {
             "FROM manageraccount man "+
             "JOIN employeeaccount emp ON man.managerAccountID = emp.employeeAccountID "+
             "JOIN accounts acc ON emp.employeeAccountID = acc.accountID " +
-            "WHERE " + column + " = ?";
+            "WHERE "+column+" "+sign+" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "accountID":
@@ -468,14 +566,9 @@ public class DBControl {
                 case "email":
                 case "phone":
                 case "shippingAddress":
-                    stmt.setString(1, val);
-                    break;
+                case "accountPassword":
                 case "managerstatus":
-                    if (val.equals("true")) {
-                        stmt.setBoolean(1, true);
-                    } else {
-                        stmt.setBoolean(1, false);
-                    }
+                    stmt.setString(1, val);
                     break;
                 default:
                     stmt.setInt(1, Integer.parseInt(val));
@@ -492,13 +585,19 @@ public class DBControl {
                         rs1.getString("phone"),
                         rs1.getString("shippingAddress"),
                         rs1.getInt("totalSales"),
-                        rs1.getString("managerstatus")));
+                        rs1.getString("managerstatus"),
+                        rs1.getString("accountPassword")));
             }
         }
 
         return results;
     }
 
+    /**
+     * Fetches all entries from the Sales Database
+     * @return An ArrayList of Sale Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Sale> fetchSales() throws Exception {
         ArrayList<Sale> results = new ArrayList<>();
 
@@ -510,11 +609,14 @@ public class DBControl {
             ResultSet rs1 = stmt.executeQuery();
 
             while (rs1.next()) {
+                int vid = rs1.getInt("vehicleID");
+                int eid = rs1.getInt("employeeAccountID");
+                int cid = rs1.getInt("customerAccountID");
                 results.add(new Sale(
                         rs1.getInt("saleID"),
-                        rs1.getInt("vehicleID"),
-                        rs1.getInt("employeeAccountID"),
-                        rs1.getInt("customerAccountID"),
+                        fetchVehicleDataAt("vehicleID", vid+"", "=").get(0),
+                        fetchEmployeeAt("employeeAccountID", eid+"", "=").get(0),
+                        fetchCustomerAt("customerAccountID", cid+"", "=").get(0),
                         rs1.getDate("dateOFSale"),
                         rs1.getInt("amountPaid")));
             }
@@ -523,12 +625,20 @@ public class DBControl {
         return results;
     }
 
-    public static ArrayList<Sale> fetchSalesAt(String column, String val) throws Exception {
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Sale Objects from the database 
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Sale> fetchSalesAt(String column, String val, String sign) throws Exception {
         ArrayList<Sale> results = new ArrayList<>();
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM sale WHERE " + column + " = ?";
+            String sql = "SELECT * FROM sale WHERE " + column + " " +sign +" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "saleID":
@@ -549,11 +659,14 @@ public class DBControl {
             ResultSet rs1 = stmt.executeQuery();
 
             while (rs1.next()) {
+                int vid = rs1.getInt("vehicleID");
+                int eid = rs1.getInt("employeeAccountID");
+                int cid = rs1.getInt("customerAccountID");
                 results.add(new Sale(
                         rs1.getInt("saleID"),
-                        rs1.getInt("vehicleID"),
-                        rs1.getInt("employeeAccountID"),
-                        rs1.getInt("customerAccountID"),
+                        fetchVehicleDataAt("vehicleID", vid+"", "=").get(0),
+                        fetchEmployeeAt("employeeAccountID", eid+"", "=").get(0),
+                        fetchCustomerAt("customerAccountID", cid+"", "=").get(0),
                         rs1.getDate("dateOFSale"),
                         rs1.getInt("amountPaid")));
             }
@@ -562,6 +675,11 @@ public class DBControl {
         return results;
     }
 
+    /**
+     * Fetches all entries from the Service Database
+     * @return An ArrayList of Service Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Service> fetchService() throws Exception {
         ArrayList<Service> results = new ArrayList<>();
 
@@ -573,9 +691,10 @@ public class DBControl {
             ResultSet rs1 = stmt.executeQuery();
 
             while (rs1.next()) {
+                int vid = rs1.getInt("vehicleID");
                 results.add(new Service(
                         rs1.getInt("serviceID"),
-                        rs1.getInt("vehicleID"),
+                        fetchVehicleDataAt("vehicleID", ""+vid, "=").get(0),
                         rs1.getDate("dateOfService"),
                         rs1.getString("descriptionOFService"),
                         rs1.getInt("cost"),
@@ -586,12 +705,20 @@ public class DBControl {
         return results;
     }
 
-    public static ArrayList<Service> fetchServiceAt(String column, String val) throws Exception {
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Service Objects from the database 
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Service> fetchServiceAt(String column, String val, String sign) throws Exception {
         ArrayList<Service> results = new ArrayList<>();
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM service WHERE " + column + " = ?";
+            String sql = "SELECT * FROM service WHERE " + column + " "+sign+" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "serviceID":
@@ -615,9 +742,10 @@ public class DBControl {
             ResultSet rs1 = stmt.executeQuery();
 
             while (rs1.next()) {
+                int vid = rs1.getInt("vehicleID");
                 results.add(new Service(
                         rs1.getInt("serviceID"),
-                        rs1.getInt("vehicleID"),
+                        fetchVehicleDataAt("vehicleID", ""+vid, "=").get(0),
                         rs1.getDate("dateOfService"),
                         rs1.getString("descriptionOFService"),
                         rs1.getInt("cost"),
@@ -628,6 +756,11 @@ public class DBControl {
         return results;
     }
 
+    /**
+     * Fetches all entries from the Vehicle Database
+     * @return An ArrayList of Vehicle Objects from the database
+     * @throws Exception Failure to fetch
+     */
     public static ArrayList<Vehicle> fetchVehicleData() throws Exception {
         ArrayList<Vehicle> results = new ArrayList<>();
 
@@ -658,12 +791,20 @@ public class DBControl {
         return results;
     }
 
-    public static ArrayList<Vehicle> fetchVehicleDataAt(String column, String val) throws Exception {
+    /**
+     * Fetches entries that match a specfic criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Vehicle Objects from the database 
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Vehicle> fetchVehicleDataAt(String column, String val, String sign) throws Exception {
         ArrayList<Vehicle> results = new ArrayList<>();
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM vehicledata WHERE " + column + " = ?";
+            String sql = "SELECT * FROM vehicledata WHERE " + column + " " + sign + " ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "price":
@@ -719,16 +860,21 @@ public class DBControl {
     }
 
     // Inserting
+    /**
+     * Inserts a new entry to the Accident Database
+     * @param n the accident entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertAccident(Accident n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO accidentdata (accidentID, vehicleID, dateOfAccident, severity, descOfAccident, airbagDeployment) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO accidentdata (vehicleID, dateOfAccident, severity, descOfAccident, airbagDeployment) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getAccidentID());
-            stmt.setInt(2, n.getVehicleID());
-            stmt.setDate(3, n.getDateOfAccident());
-            stmt.setString(4, n.getSeverity());
-            stmt.setString(5, n.getDescription()); //Please make a password attribute for account
-            stmt.setBoolean(6, n.isAirbagDeployment());
+            stmt.setInt(1, n.getVehicle().getVehicleID());
+            stmt.setDate(2, n.getDateOfAccident());
+            stmt.setString(3, n.getSeverity());
+            stmt.setString(4, n.getDescription());
+            stmt.setBoolean(5, n.isAirbagDeployment());
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -738,6 +884,12 @@ public class DBControl {
         return true;
     } 
 
+    /**
+     * Inserts a new entry to the Account Database
+     * @param n the account entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertAccount(Account n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             String sql = "INSERT INTO accounts (accountID, firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -758,9 +910,15 @@ public class DBControl {
         return true;
     }
 
+    /**
+     * Inserts a new entry to the Customer Database
+     * @param n the customer entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertCustomer(Customer n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress()));
+            InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getPassword()));
             String sql = "INSERT INTO customeraccount (customerAccountID) VALUES (?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, n.getAccountID());
@@ -772,17 +930,22 @@ public class DBControl {
         return true;
     }
 
+    /**
+     * Inserts a new entry to the Damage Database
+     * @param n the damage entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertDamage(Damage n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO damage (damageID, vehicleID, locationOfDamage, severity, repairCost, accidentID, airbageDeployment) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO damage (vehicleID, locationOfDamage, severity, repairCost, accidentID, airbagDeployment) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getDamageID());
-            stmt.setInt(2, n.getVehicleID());
-            stmt.setString(3, n.getDamageLocation());
-            stmt.setString(4, n.getSeverity());
-            stmt.setInt(5, (int) n.getRepairCost());
-            stmt.setInt(6, n.getAccidentID());
-            stmt.setBoolean(7, true);
+            stmt.setInt(1, n.getVehicle().getVehicleID());
+            stmt.setString(2, n.getDamageLocation());
+            stmt.setString(3, n.getSeverity());
+            stmt.setDouble(4, n.getRepairCost());
+            stmt.setInt(5, n.getAccident().getAccidentID());
+            stmt.setBoolean(6, n.getAccident().isAirbagDeployment());
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -792,13 +955,19 @@ public class DBControl {
         return true;
     } 
 
+    /**
+     * Inserts a new entry to the Employee Database
+     * @param n the employee entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertEmployee(Employee n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress()));
+            InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getPassword()));
             String sql = "INSERT INTO employeeaccount (employeeAccountID, totalSales) VALUES (?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, n.getAccountID());
-            stmt.setInt(2, (int) n.getTotalSalesPerMonth());
+            stmt.setDouble(2, n.getTotalSalesPerMonth());
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -808,12 +977,18 @@ public class DBControl {
         return true;
     } 
 
+    /**
+     * Inserts a new entry to the Image Database
+     * @param n the Image entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertImage(Image n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             String sql = "INSERT INTO images (imageID, vehicleID, imageURL) VALUES (?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, n.getImageID());
-            stmt.setInt(2, (int) n.getVehicleID());
+            stmt.setInt(2, n.getVehicleID());
             stmt.setString(3, n.getImagePath());
             stmt.executeUpdate();
             conn.close();
@@ -824,9 +999,15 @@ public class DBControl {
         return true;
     }
 
+    /**
+     * Inserts a new entry to the Manager Database
+     * @param n the manager entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertManager(Manager n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            InsertEmployee(new Employee(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getTotalSalesPerMonth()));
+            InsertEmployee(new Employee(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getTotalSalesPerMonth(), n.getPassword()));
             String sql = "INSERT INTO manageraccount (managerAccountID, managerstatus) VALUES (?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, n.getAccountID());
@@ -840,16 +1021,21 @@ public class DBControl {
         return true;
     } 
 
+    /**
+     * Inserts a new entry to the Sale Database
+     * @param n the Sale entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertSale(Sale n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO sale (saleID, vehicleID, employeeAccountID, customerAccountID, dateOFSale, amountPaid) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO sale (vehicleID, employeeAccountID, customerAccountID, dateOFSale, amountPaid) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getSaleID());
-            stmt.setInt(2, n.getVehicleID());
-            stmt.setInt(3, n.getEmployeeAccountID());
-            stmt.setInt(4, n.getCustomerAccountID());
-            stmt.setDate(5, n.getSaleDate());
-            stmt.setInt(6, (int) n.getSaleAmount());
+            stmt.setInt(1, n.getVehicle().getVehicleID());
+            stmt.setInt(2, n.getEmployeeAccount().getAccountID());
+            stmt.setInt(3, n.getCustomerAccount().getAccountID());
+            stmt.setDate(4, n.getSaleDate());
+            stmt.setDouble(5, n.getSaleAmount());
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -859,16 +1045,21 @@ public class DBControl {
         return true;
     } 
 
+    /**
+     * Inserts a new entry to the Service Database
+     * @param n the Service entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertService(Service n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO service (serviceID, vehicleID, dateOfService, descriptionOFService, cost, mileage) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO service (vehicleID, dateOfService, descriptionOFService, cost, mileage) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getServiceID());
-            stmt.setInt(2, n.getVehicleID());
-            stmt.setDate(3, n.getDateOfService());
-            stmt.setString(4, n.getDescription());
-            stmt.setInt(5, (int) n.getCost());
-            stmt.setInt(6, n.getMileageAtService());
+            stmt.setInt(1, n.getVehicle().getVehicleID());
+            stmt.setDate(2, n.getDateOfService());
+            stmt.setString(3, n.getDescription());
+            stmt.setDouble(4, n.getCost());
+            stmt.setInt(5, n.getMileageAtService());
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -878,12 +1069,18 @@ public class DBControl {
         return true;
     }
 
+    /**
+     * Inserts a new entry to the Vehicle Database
+     * @param n the vehicle entry
+     * @return if the entry is sucessfully added, then "true", otherwise "false"
+     * @throws Exception Failure to add, prints "false"
+     */
     public static boolean InsertVehicle(Vehicle n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             String sql = "INSERT INTO vehicledata (vinNumber, price, maker, model, color, modelYear, bodyStyle, isUsed, mileage, carStatus, prevOwnerCount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, n.getVinNumber());
-            stmt.setInt(2, (int) n.getPrice());
+            stmt.setDouble(2, n.getPrice());
             stmt.setString(3, n.getMake());
             stmt.setString(4, n.getModel());
             stmt.setString(5, n.getColor());

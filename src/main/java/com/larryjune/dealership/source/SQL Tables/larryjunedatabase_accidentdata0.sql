@@ -16,33 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `service`
+-- Table structure for table `accidentdata`
 --
 
-DROP TABLE IF EXISTS `service`;
+DROP TABLE IF EXISTS `accidentdata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `service` (
-  `serviceID` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `accidentdata` (
+  `accidentID` int NOT NULL AUTO_INCREMENT,
   `vehicleID` int DEFAULT NULL,
-  `dateOfService` date DEFAULT NULL,
-  `descriptionOFService` char(255) DEFAULT NULL,
-  `cost` int DEFAULT NULL,
-  `mileage` int DEFAULT NULL,
-  PRIMARY KEY (`serviceID`),
+  `dateOFAccident` date DEFAULT NULL,
+  `severity` varchar(255) DEFAULT NULL,
+  `descOfAccident` varchar(255) DEFAULT NULL,
+  `airbagDeployment` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`accidentID`),
   KEY `vehicleID` (`vehicleID`),
-  CONSTRAINT `service_ibfk_1` FOREIGN KEY (`vehicleID`) REFERENCES `vehicledata` (`vehicleID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `accidentdata_ibfk_1` FOREIGN KEY (`vehicleID`) REFERENCES `vehicledata` (`vehicleID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `service`
+-- Dumping data for table `accidentdata`
 --
 
-LOCK TABLES `service` WRITE;
-/*!40000 ALTER TABLE `service` DISABLE KEYS */;
-INSERT INTO `service` VALUES (1,3,'2025-03-01','Transmission fluid flush',300,76000),(2,6,'2025-04-18','Clutch adjustment and alignment',600,32000),(3,7,'2025-05-02','Oil change and air filter replacement',180,40000),(4,10,'2025-06-28','Detailing and full inspection service',200,14000);
-/*!40000 ALTER TABLE `service` ENABLE KEYS */;
+LOCK TABLES `accidentdata` WRITE;
+/*!40000 ALTER TABLE `accidentdata` DISABLE KEYS */;
+INSERT INTO `accidentdata` VALUES (1,1,'2025-01-12','Bad','Rear-end collision at stoplight',0),(2,6,'2025-04-10','Bad','Intersection T-bone accident',0),(3,7,'2025-05-01','Bad','Deer collision on rural road',1),(4,8,'2025-05-19','really Bad','Multi-car freeway pileup',0),(5,4,'2025-10-05','Bad','Single vehicle curb collision',1);
+/*!40000 ALTER TABLE `accidentdata` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-16 21:50:15
+-- Dump completed on 2026-04-20 22:11:46

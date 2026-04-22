@@ -3,6 +3,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBConnection {
+    /**
+     * Connects to a local mySQL database
+     * @return a Connection to the database
+     * @throws Exception Fail to connect
+     */
     public static Connection connect() throws Exception {
         String url = "jdbc:mysql://localhost:3306/larryjunedatabase";
         String user = "root";

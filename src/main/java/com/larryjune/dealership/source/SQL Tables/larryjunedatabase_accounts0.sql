@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS `accounts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `accounts` (
   `accountID` int NOT NULL AUTO_INCREMENT,
-  `firstName` char(255) DEFAULT NULL,
-  `lastName` char(255) DEFAULT NULL,
+  `firstName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
-  `accountPassword` char(15) DEFAULT NULL,
-  `email` char(255) DEFAULT NULL,
-  `shippingAddress` char(255) DEFAULT NULL,
+  `accountPassword` varchar(30) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `shippingAddress` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`accountID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-16 21:50:15
+-- Dump completed on 2026-04-20 22:11:46

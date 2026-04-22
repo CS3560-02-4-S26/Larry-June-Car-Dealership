@@ -16,28 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `manageraccount`
+-- Table structure for table `customeraccount`
 --
 
-DROP TABLE IF EXISTS `manageraccount`;
+DROP TABLE IF EXISTS `customeraccount`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `manageraccount` (
-  `managerAccountID` int DEFAULT NULL,
-  `managerstatus` char(255) DEFAULT NULL,
-  KEY `managerAccountID` (`managerAccountID`),
-  CONSTRAINT `manageraccount_ibfk_1` FOREIGN KEY (`managerAccountID`) REFERENCES `employeeaccount` (`employeeAccountID`)
+CREATE TABLE `customeraccount` (
+  `customerAccountID` int DEFAULT NULL,
+  KEY `customerAccountID` (`customerAccountID`),
+  CONSTRAINT `customeraccount_ibfk_1` FOREIGN KEY (`customerAccountID`) REFERENCES `accounts` (`accountID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `manageraccount`
+-- Dumping data for table `customeraccount`
 --
 
-LOCK TABLES `manageraccount` WRITE;
-/*!40000 ALTER TABLE `manageraccount` DISABLE KEYS */;
-INSERT INTO `manageraccount` VALUES (3,'GONE'),(7,'GONE');
-/*!40000 ALTER TABLE `manageraccount` ENABLE KEYS */;
+LOCK TABLES `customeraccount` WRITE;
+/*!40000 ALTER TABLE `customeraccount` DISABLE KEYS */;
+INSERT INTO `customeraccount` VALUES (4),(5),(8);
+/*!40000 ALTER TABLE `customeraccount` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-16 21:50:15
+-- Dump completed on 2026-04-20 22:11:46
