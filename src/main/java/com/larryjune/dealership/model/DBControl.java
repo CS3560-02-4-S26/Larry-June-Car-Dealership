@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class DBControl {
     // Fetching
     // NOTE: Dates are always in the format of yyyy-mm-dd
-
     /**
      * Fetches all entries from the Accidents Database
      * @return An ArrayList of Accident Objects from the database
@@ -1094,6 +1093,363 @@ public class DBControl {
             conn.close();
         } catch (SQLException e) {
             return false;
+        }
+
+        return true;
+    }
+
+    //Update Methods
+    /**
+     * Updates entrys in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @return True if it updates, false otherwise
+     * @throws Exception returns false
+     */
+    public static boolean updateAccidents(int id, String column, String val) throws Exception {
+        try (Connection conn = DBConnection.connect()) {
+
+            String sql = "UPDATE accidentdata SET " + column+ " = ? WHERE accidentID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            switch (column) {
+                case "accidentID":
+                case "vehicleID":
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+                case "dateOFAccident":
+                    stmt.setDate(1, Date.valueOf(val));
+                    break;
+                case "severity":
+                case "descOfAccident":
+                    stmt.setString(1, val);
+                    break;
+                case "airbagDeployment":
+                    if (val.equals("true")) {
+                        stmt.setBoolean(1, true);
+                    } else {
+                        stmt.setBoolean(1, false);
+                    }
+                    break;
+                default:
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+            }
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            return false;        
+        }
+
+        return true;
+    }
+
+    /**
+     * Updates entrys in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @return True if it updates, false otherwise
+     * @throws Exception returns false
+     */
+    public static boolean updateAccount(int id, String column, String val) throws Exception {
+        try (Connection conn = DBConnection.connect()) {
+
+            String sql = "UPDATE accounts SET " + column+ " = ? WHERE accountID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            switch (column) {
+                case "accountID":
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+                case "firstName":
+                case "lastName":
+                case "email":
+                case "phone":
+                case "shippingAddress":
+                case "accountPassword":
+                    stmt.setString(1, val);
+                    break;
+                default:
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+            }
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            return false;        
+        }
+
+        return true;
+    }
+
+    /**
+     * Updates entrys in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @return True if it updates, false otherwise
+     * @throws Exception returns false
+     */
+    public static boolean updateDamage(int id, String column, String val) throws Exception {
+        try (Connection conn = DBConnection.connect()) {
+
+            String sql = "UPDATE damage SET " + column+ " = ? WHERE damageID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            switch (column) {
+                case "damageID":
+                case "vehicleID":
+                case "repairCost":
+                case "accidentID":
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+                case "locationOfDamage":
+                case "severity":
+                    stmt.setString(1, val);
+                    break;
+                default:
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+            }
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            return false;        
+        }
+
+        return true;
+    }
+
+    /**
+     * Updates entrys in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @return True if it updates, false otherwise
+     * @throws Exception returns false
+     */
+    public static boolean updateEmployee(int id, String column, String val) throws Exception {
+        try (Connection conn = DBConnection.connect()) {
+
+            String sql = "UPDATE employeeaccount SET " + column+ " = ? WHERE employeeAccountID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            switch (column) {
+                case "employeeAccountID":
+                case "totalSales":
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+                default:
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+            }
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            return false;        
+        }
+
+        return true;
+    }
+
+    /**
+     * Updates entrys in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @return True if it updates, false otherwise
+     * @throws Exception returns false
+     */
+    public static boolean updateImages(int id, String column, String val) throws Exception {
+        try (Connection conn = DBConnection.connect()) {
+
+            String sql = "UPDATE images SET " + column+ " = ? WHERE imageID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            switch (column) {
+                case "imageID":
+                case "vehicleID":
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+                case "imageURL":
+                    stmt.setString(1, val);
+                    break;
+                default:
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+            }
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            return false;        
+        }
+
+        return true;
+    }
+
+    /**
+     * Updates entrys in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @return True if it updates, false otherwise
+     * @throws Exception returns false
+     */
+    public static boolean updateManager(int id, String column, String val) throws Exception {
+        try (Connection conn = DBConnection.connect()) {
+
+            String sql = "UPDATE manageraccount SET " + column+ " = ? WHERE managerAccountID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            switch (column) {
+                case "managerAccountID":
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+                case "managerstatus":
+                    stmt.setString(1, val);
+                    break;
+                default:
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+            }
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            return false;        
+        }
+
+        return true;
+    }
+
+    /**
+     * Updates entrys in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @return True if it updates, false otherwise
+     * @throws Exception returns false
+     */
+    public static boolean updateSale(int id, String column, String val) throws Exception {
+        try (Connection conn = DBConnection.connect()) {
+
+            String sql = "UPDATE sale SET " + column+ " = ? WHERE saleID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            switch (column) {
+                case "saleID":
+                case "vehicleID":
+                case "employeeAccountID":
+                case "customerAccountID":
+                case "amountPaid":
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+                case "dateOFSale":
+                    stmt.setDate(1, Date.valueOf(val));
+                    break;
+                default:
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+            }
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            return false;        
+        }
+
+        return true;
+    }
+
+    /**
+     * Updates entrys in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @return True if it updates, false otherwise
+     * @throws Exception returns false
+     */
+    public static boolean updateService(int id, String column, String val) throws Exception {
+        try (Connection conn = DBConnection.connect()) {
+
+            String sql = "UPDATE service SET " + column+ " = ? WHERE serviceID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            switch (column) {
+                case "serviceID":
+                case "vehicleID":
+                case "cost":
+                case "mileage":
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+                case "dateOfService":
+                    stmt.setDate(1, Date.valueOf(val));
+                    break;
+                case "severity":
+                case "descriptionOFService":
+                    stmt.setString(1, val);
+                    break;
+                default:
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+            }
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            return false;        
+        }
+
+        return true;
+    }
+
+    /**
+     * Updates entrys in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @return True if it updates, false otherwise
+     * @throws Exception returns false
+     */
+    public static boolean updateVehicleData(int id, String column, String val) throws Exception {
+        try (Connection conn = DBConnection.connect()) {
+
+            String sql = "UPDATE vehicledata SET " + column+ " = ? WHERE vehicleID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            switch (column) {
+                case "price":
+                case "vehicleID":
+                case "modelYear":
+                case "mileage":
+                case "prevOwnerCount":
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+                case "dateOFAccident":
+                    stmt.setDate(1, Date.valueOf(val));
+                    break;
+                case "vinNumber":
+                case "maker":
+                case "model":
+                case "color":
+                case "bodyStyle":
+                case "carStatus":
+                    stmt.setString(1, val);
+                    break;
+                case "isUsed":
+                    if (val.equals("true")) {
+                        stmt.setBoolean(1, true);
+                    } else {
+                        stmt.setBoolean(1, false);
+                    }
+                    break;
+                default:
+                    stmt.setInt(1, Integer.parseInt(val));
+                    break;
+            }
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            return false;        
         }
 
         return true;
