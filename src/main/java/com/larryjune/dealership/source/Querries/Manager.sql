@@ -1,4 +1,4 @@
-USE larryjunedatabases;
+USE larryjunedatabase;
 
 CREATE TABLE ManagerAccount(
 	managerAccountID INT,

@@ -1,4 +1,4 @@
-USE larryjunedatabases;
+USE larryjunedatabase;
 
 CREATE TABLE Accounts(
 	accountID INT PRIMARY KEY auto_increment,

@@ -1,4 +1,4 @@
-USE larryjunedatabases;
+USE larryjunedatabase;
 
 CREATE TABLE Service(
 	serviceID INT PRIMARY KEY auto_increment,

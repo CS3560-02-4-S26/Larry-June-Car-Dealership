@@ -1,3 +1,4 @@
+USE larryjunedatabase;
 
 CREATE TABLE AccidentData(
 	accidentID INT PRIMARY KEY auto_increment,
