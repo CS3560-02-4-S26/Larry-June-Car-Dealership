@@ -1,4 +1,4 @@
-USE larryjunedatabases;
+USE larryjunedatabase;
 
 CREATE TABLE Sale(
 	saleID INT PRIMARY KEY auto_increment,

@@ -1,4 +1,4 @@
-USE larryjunedatabases;
+USE larryjunedatabase;
 
 CREATE TABLE damage(
 	damageID INT PRIMARY KEY auto_increment,

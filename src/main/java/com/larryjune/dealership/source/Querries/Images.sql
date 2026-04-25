@@ -1,4 +1,4 @@
-USE larryjunedatabases;
+USE larryjunedatabase;
 
 CREATE TABLE images(
 	imageID INT PRIMARY KEY auto_increment,
