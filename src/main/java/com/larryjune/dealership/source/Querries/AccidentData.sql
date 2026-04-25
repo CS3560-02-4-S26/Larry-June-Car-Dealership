@@ -7,7 +7,7 @@ CREATE TABLE AccidentData(
 	severity VARCHAR(255),
     descOfAccident VARCHAR(255),
 	airbagDeployment BOOLEAN,
-    FOREIGN KEY (vehicleID) REFERENCES vehicledata(vehicleID)
+    FOREIGN KEY (vehicleID) REFERENCES vehicleData(vehicleID)
 );
 
 

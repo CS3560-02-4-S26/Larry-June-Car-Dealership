@@ -1,7 +1,7 @@
 USE larryjunedatabase;
 
 CREATE TABLE CustomerAccount(
-	customerAccountID INT,
+	customerAccountID INT PRIMARY KEY,
     FOREIGN KEY (customerAccountID) REFERENCES Accounts(accountID)
 );
 

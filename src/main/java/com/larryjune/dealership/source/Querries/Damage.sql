@@ -8,8 +8,8 @@ CREATE TABLE damage(
     repairCost INT, 
     accidentID INT,
     airbagDeployment BOOLEAN,
-    FOREIGN KEY (vehicleID) REFERENCES vehicledata(vehicleID),
-    FOREIGN KEY (accidentID) REFERENCES accidentData(accidentID)
+    FOREIGN KEY (vehicleID) REFERENCES vehicleData(vehicleID),
+    FOREIGN KEY (accidentID) REFERENCES AccidentData(accidentID)
 );
 
 

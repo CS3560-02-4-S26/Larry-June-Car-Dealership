@@ -1,7 +1,7 @@
 USE larryjunedatabase;
 
 CREATE TABLE EmployeeAccount(
-	employeeAccountID INT,
+	employeeAccountID INT PRIMARY KEY,
 	totalSales DECIMAL(15, 2),
     FOREIGN KEY (employeeAccountID) REFERENCES Accounts(accountID)
 );

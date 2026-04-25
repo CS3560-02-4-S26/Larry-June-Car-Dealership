@@ -7,7 +7,7 @@ CREATE TABLE Service(
     descriptionOFService VARCHAR(255),
     cost DECIMAL(15,2), 
     mileage INT,
-    FOREIGN KEY (vehicleID) REFERENCES vehicledata(vehicleID)
+    FOREIGN KEY (vehicleID) REFERENCES vehicleData(vehicleID)
 );
 
 
@@ -22,7 +22,7 @@ VALUES
 	(3, '2025-03-01', 'Transmission fluid flush', 300, 76000),
 	(6, '2025-04-18', 'Clutch adjustment and alignment', 600, 32000),
 	(7, '2025-05-02', 'Oil change and air filter replacement', 180, 40000),
-	(10,'2025-06-28', 'Detailing and full inspection service', 200, 14000);;
+	(10,'2025-06-28', 'Detailing and full inspection service', 200, 14000);
 
 SELECT * FROM Service;
 

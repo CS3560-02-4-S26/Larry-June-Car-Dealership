@@ -15,7 +15,7 @@ CREATE TABLE vehicleData(
     prevOwnerCount INT
 );
 
-INSERT INTO vehicledata (vinNumber, price, maker, model, color, modelYear, bodyStyle, isUsed, mileage, carStatus, prevOwnerCount)
+INSERT INTO vehicleData (vinNumber, price, maker, model, color, modelYear, bodyStyle, isUsed, mileage, carStatus, prevOwnerCount)
 VALUES 
 	('1HGCM82633A004352', 18500, 'Honda', 'Accord', 'Black', 2018, 'Sedan', 1, 62000, 1, 1),
 	('2FTRX18W1XCA01234', 24500, 'Ford', 'F-150', 'Blue', 2020, 'Truck', 1, 45000, 1, 1),

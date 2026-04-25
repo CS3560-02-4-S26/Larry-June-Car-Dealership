@@ -7,9 +7,9 @@ CREATE TABLE Sale(
     customerAccountID INT,
     dateOFSale DATE, 
     amountPaid DECIMAL(15,2),
-    FOREIGN KEY (vehicleID) REFERENCES vehicledata(vehicleID),
-    FOREIGN KEY (employeeAccountID) REFERENCES employeeAccount(employeeAccountID),
-    FOREIGN KEY (customerAccountID) REFERENCES customerAccount(customerAccountID)
+    FOREIGN KEY (vehicleID) REFERENCES vehicleData(vehicleID),
+    FOREIGN KEY (employeeAccountID) REFERENCES EmployeeAccount(employeeAccountID),
+    FOREIGN KEY (customerAccountID) REFERENCES CustomerAccount(customerAccountID)
 );
 
 
