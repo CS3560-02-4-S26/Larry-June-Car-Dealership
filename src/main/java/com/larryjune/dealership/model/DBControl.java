@@ -803,7 +803,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM vehicledata WHERE " + column + " " + sign + " ?";
+            String sql = "SELECT * FROM vehicleData WHERE " + column + " " + sign + " ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "price":
