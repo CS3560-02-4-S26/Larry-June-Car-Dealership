@@ -48,51 +48,23 @@ public class MainScreenController {
 
         // Add dummy car items
         FXMLLoader carItemLoader;
-        Label carName, carMsrp, carDescription;
         ArrayList<Image> currentVehicleImages;
+        CarItemController controller;
+        VBox carItem;
         for (Vehicle vehicle : featuredVehicleData) {
             try {
                 carItemLoader = new FXMLLoader(
                         getClass().getResource("/com/larryjune/dealership/CarItem.fxml")
                 );
 
-                VBox carItem = carItemLoader.load();
-                carName = (Label) carItem.getChildren().get(1);
-                carMsrp = (Label) carItem.getChildren().get(2);
-                carDescription = (Label) carItem.getChildren().get(3);
+                carItem = carItemLoader.load();
+                controller = carItemLoader.getController();
 
-                // TODO: Move image loading onto a background thread
-                // Loading images here bogs the program down
-                carItem.getChildren().removeFirst();
-//                try {
-//                    currentVehicleImages = DBControl.fetchImagesAt(
-//                        "vehicleID", Integer.toString(vehicle.getVehicleID())
-//                    );
-//
-//                    carItem.getChildren().add(
-//                        new ImageView(currentVehicleImages.getFirst().getImagePath())
-//                    );
-//                } catch (Exception e) {
-//                    System.err.println("Failed to load image with vehicleID = " + vehicle.getVehicleID());
-//                    // Retrieving the images failed, so add a label with "No Image Available"
-//                    carItem.getChildren().add(new Label("No Image Available"));
-//                }
-
-                carName.setText(
-                    vehicle.getYear() + " " + vehicle.getMake() +
-                    " " + vehicle.getModel()
-                );
-
-                carMsrp.setText(
-                    "MSRP: $" + vehicle.getPrice()
-                );
-
-                carDescription.setText(vehicle.getCarStatus());
-
+                controller.setInfo(vehicle);
                 carGrid.getChildren().add(carItem);
             } catch (IOException e) {
                 // Skip the current entry
-                System.err.println("ERROR: Failed to add entry to car");
+                System.err.println("ERROR: Failed to add entry to featured cars");
             }
         }
     }
