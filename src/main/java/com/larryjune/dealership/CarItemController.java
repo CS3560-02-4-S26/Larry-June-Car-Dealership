@@ -24,16 +24,17 @@ public class CarItemController {
 
     public void setInfo(Vehicle vehicleInfo) {
         // TODO: Move image loading into a background thread. Loading them here slows the program down
-//        try {
-//            List<Image> vehicleImages = DBControl.fetchImagesAt(
-//                "vehicleID", Integer.toString(vehicleInfo.getVehicleID())
-//            );
-//
-//            carImage = new ImageView(vehicleImages.getFirst().getImagePath());
-//        } catch (Exception e) {
-//            System.err.println("Failed to load image with vehicleID = " + vehicleInfo.getVehicleID());
-//        }
-        carImage = new ImageView();
+        try {
+            Image vehicleImage = DBControl.fetchImagesAt(
+                "vehicleID", Integer.toString(vehicleInfo.getVehicleID())
+            ).getFirst();
+            carImage.setImage(new javafx.scene.image.Image(vehicleImage.getImagePath()));
+        } catch (IndexOutOfBoundsException e) {
+          System.err.println("No available vehicle images for vehicleID = " + vehicleInfo.getVehicleID());
+        } catch (Exception e) {
+            System.err.println("Failed to load image with vehicleID = " + vehicleInfo.getVehicleID());
+            e.printStackTrace();
+        }
 
         carTitle.setText(
             vehicleInfo.getYear() + " " + vehicleInfo.getMake() + " " +
