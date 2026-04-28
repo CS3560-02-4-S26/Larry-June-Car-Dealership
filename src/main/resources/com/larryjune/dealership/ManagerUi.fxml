@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="786.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="786.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.Add">
    <children>
       <HBox layoutX="-2.0" prefHeight="100.0" prefWidth="792.0" style="-fx-background-color: black;">
          <children>
@@ -27,7 +27,7 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="271.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: transperent; -fx-text-fill: white; -fx-font-weight: bold;" text="Vehicles" textFill="#fffefe">
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: transperent; -fx-text-fill: white; -fx-font-weight: bold;" text="Vehicles" textFill="#fffefe" fx:id = "passwordField">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -43,12 +43,12 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="32.0" layoutY="112.0" mnemonicParsing="false" style="-fx-background-color: black;" text="+ Add Vehicle" textFill="WHITE">
+      <Button layoutX="32.0" layoutY="112.0" mnemonicParsing="false" style="-fx-background-color: black;" text="+ Add Vehicle" textFill="WHITE" onAction="#addVehicle" fx:id="vehicle">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="159.0" layoutY="112.0" mnemonicParsing="false" style="-fx-background-color: black;" text="Add Employee" textFill="WHITE">
+      <Button layoutX="159.0" layoutY="112.0" mnemonicParsing="false" style="-fx-background-color: black;" text="Add Employee" textFill="WHITE" onAction="#addEmployee" fx:id="employee">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -75,7 +75,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="499.0" style="-fx-background-color: black;" text="Year" textFill="WHITE" GridPane.columnIndex="2">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="499.0" style="-fx-background-color: black;" text="Year" textFill="WHITE" GridPane.columnIndex="2" >
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
