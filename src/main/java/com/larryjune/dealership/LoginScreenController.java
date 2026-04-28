@@ -65,7 +65,7 @@ private void handleSubmitLogin(ActionEvent event) throws IOException {
     //handles the sign up button to go to the sign up screen 
     private void handleSignUp(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(
-            getClass().getResource("/com/larryjune/dealershipSignUpScreen.fxml"));
+            getClass().getResource("/com/larryjune/dealership/SignUpUi.fxml"));
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root, 1000,900));
