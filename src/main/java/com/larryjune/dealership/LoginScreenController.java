@@ -60,6 +60,20 @@ private void handleSubmitLogin(ActionEvent event) throws IOException {
         System.out.println("Invalid username or password");
     }
 }
+    
+    @FXML
+    //handles the sign up button to go to the sign up screen 
+    private void handleSignUp(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(
+            getClass().getResource("/com/larryjune/dealershipSignUpScreen.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 1000,900));
+            stage.setTitle("Sign up");
+            stage.show();
+    
+    
+}
 
 }
 

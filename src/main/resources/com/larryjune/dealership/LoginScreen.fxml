@@ -45,7 +45,8 @@
                         <HBox prefHeight="9.0" prefWidth="340.0">
                            <children>
                               <HBox prefHeight="12.0" prefWidth="285.0" />
-                              <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-background-radius: 8; -fx-border-radius: 8; -fx-font-size: 11; -fx-text-alignment: right;" text="Sign Up">
+                              <!--Sign Up button-->
+                              <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handleSignUp" style="-fx-background-color: transparent; -fx-border-color: black; -fx-background-radius: 8; -fx-border-radius: 8; -fx-font-size: 11; -fx-text-alignment: right;" text="Sign Up">
                                  <font>
                                     <Font name="Helvetica" size="13.0" />
                                  </font>
