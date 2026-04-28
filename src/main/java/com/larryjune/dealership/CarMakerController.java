@@ -111,8 +111,9 @@ public class CarMakerController {
             int previousOwners = Integer.parseInt(previousCounter.getText());
             int vId = Integer.parseInt(vehicleId.getText());
            
-            DBControl.InsertVehicle(new Vehicle(vId, vin, price, maker, model, color, builtYear, bodyStyle, used, mileage, status, previousOwners));
-            DBControl.InsertAccident(new Accident(accId, vId, accidentDate, accidentSeverity, airBagDeployed, accidentDescription));
+            Vehicle myVehicle = new Vehicle(vId, vin, price, maker, model, color, builtYear, bodyStyle, used, mileage, status, previousOwners);
+            DBControl.InsertVehicle(myVehicle);
+            DBControl.InsertAccident(new Accident(accId, myVehicle, accidentDate, accidentSeverity, airBagDeployed, accidentDescription));
             
             //Sends the user back to the manager screen
             Parent root = FXMLLoader.load(

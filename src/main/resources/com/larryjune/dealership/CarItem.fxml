@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--Controller Connection-->
+
+<VBox alignment="TOP_CENTER" maxWidth="Infinity" prefWidth="220.0" spacing="8.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 10; -fx-padding: 15;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.CarItemController">
+   <children>
+      <ImageView fx:id="carImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="carTitle" style="-fx-text-fill: #222222; -fx-font-weight: bold;" text="Civic Si">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="carMsrp" text="MSRP - $30,000" />
+      <Label fx:id="carDescription" text="Sport car of a lifetime" wrapText="true" />
+   </children>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+</VBox>

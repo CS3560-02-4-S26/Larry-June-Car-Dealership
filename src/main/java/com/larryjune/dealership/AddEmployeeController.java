@@ -23,6 +23,7 @@ public class AddEmployeeController {
     @FXML private TextField phoneNumber;
     @FXML private TextField shippingAddress;
     @FXML private TextField salesPerMonth;
+    @FXML private TextField password;
 
     @FXML
     private void confirmAction(ActionEvent event) {
@@ -34,8 +35,9 @@ public class AddEmployeeController {
             String empEmail = email.getText();
             String empPhoneNumber = phoneNumber.getText();
             String empShippingAddress = shippingAddress.getText();
+            String empPassword = password.getText();
             double empSalesPerMonth = Double.parseDouble(salesPerMonth.getText());
-            DBControl.InsertEmployee(new Employee(id, empFirstName, empLastName, empEmail, empPhoneNumber, empShippingAddress, empSalesPerMonth));
+            DBControl.InsertEmployee(new Employee(id, empFirstName, empLastName, empEmail, empPhoneNumber, empShippingAddress, empSalesPerMonth, empPassword));
             Parent root = FXMLLoader.load(
                 getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml"));
 

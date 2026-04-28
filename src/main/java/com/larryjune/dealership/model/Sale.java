@@ -4,18 +4,18 @@ import java.sql.Date;
 
 public class Sale {
     private int saleID;
-    private int vehicleID;
-    private int employeeAccountID;
-    private int customerAccountID;
+    private Vehicle vehicle;
+    private Employee employeeAccount;
+    private Customer customerAccount;
     private Date saleDate;
     private double saleAmount;
 
-    public Sale(int saleID, int vehicleID, int employeeAccountID, int customerAccountID, Date saleDate,
+    public Sale(int saleID, Vehicle vehicle, Employee employeeAccount, Customer customerAccount, Date saleDate,
             double saleAmount) {
         this.saleID = saleID;
-        this.vehicleID = vehicleID;
-        this.employeeAccountID = employeeAccountID;
-        this.customerAccountID = customerAccountID;
+        this.vehicle = vehicle;
+        this.employeeAccount = employeeAccount;
+        this.customerAccount = customerAccount;
         this.saleDate = saleDate;
         this.saleAmount = saleAmount;
     }
@@ -28,28 +28,28 @@ public class Sale {
         this.saleID = saleID;
     }
 
-    public int getVehicleID() {
-        return vehicleID;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleID(int vehicleID) {
-        this.vehicleID = vehicleID;
+    public void setVehicleID(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
-    public int getEmployeeAccountID() {
-        return employeeAccountID;
+    public Employee getEmployeeAccount() {
+        return employeeAccount;
     }
 
-    public void setEmployeeAccountID(int employeeAccountID) {
-        this.employeeAccountID = employeeAccountID;
+    public void setEmployeeAccount(Employee employeeAccount) {
+        this.employeeAccount = employeeAccount;
     }
 
-    public int getCustomerAccountID() {
-        return customerAccountID;
+    public Customer getCustomerAccount() {
+        return customerAccount;
     }
 
-    public void setCustomerAccountID(int customerAccountID) {
-        this.customerAccountID = customerAccountID;
+    public void setCustomerAccount(Customer customerAccount) {
+        this.customerAccount = customerAccount;
     }
 
     public Date getSaleDate() {
@@ -66,5 +66,10 @@ public class Sale {
 
     public void setSaleAmount(double saleAmount) {
         this.saleAmount = saleAmount;
+    }
+
+    @Override
+    public String toString(){
+        return "{" + saleID + ", " + vehicle + ", " + employeeAccount + ", " + customerAccount + ", " + saleDate + ", " + saleAmount + "}";
     }
 }
