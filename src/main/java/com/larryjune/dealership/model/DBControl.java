@@ -891,18 +891,18 @@ public class DBControl {
      */
     public static boolean InsertAccount(Account n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO Accounts (accountID, firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Accounts (accountID, firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getAccountID());
-            stmt.setString(2, n.getFirstName());
-            stmt.setString(3, n.getLastName());
-            stmt.setString(4, n.getPhoneNum());
-            stmt.setString(5, "ABC123"); //Please make a password attribute for account
-            stmt.setString(6, n.getEmail());
-            stmt.setString(7, n.getShippingAddress());
+            stmt.setString(1, n.getFirstName());
+            stmt.setString(2, n.getLastName());
+            stmt.setString(3, n.getPhoneNum());
+            stmt.setString(4, n.getPassword()); 
+            stmt.setString(5, n.getEmail());
+            stmt.setString(6, n.getShippingAddress());
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
 
