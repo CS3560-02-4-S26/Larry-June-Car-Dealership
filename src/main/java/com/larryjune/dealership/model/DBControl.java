@@ -891,7 +891,7 @@ public class DBControl {
      */
     public static boolean InsertAccount(Account n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO accounts (accountID, firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Accounts (accountID, firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, n.getAccountID());
             stmt.setString(2, n.getFirstName());
