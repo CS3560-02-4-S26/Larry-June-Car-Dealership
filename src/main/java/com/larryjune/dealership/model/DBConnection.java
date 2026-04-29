@@ -9,8 +9,8 @@ public class DBConnection {
      * @throws Exception Fail to connect
      */
     public static Connection connect() throws Exception {
-        String url = "jdbc:mysql://localhost:3306/larryjunedatabase";
-        String user = "root";
+        String url = "jdbc:mysql://gperson.chickenkiller.com:3306/larryjunedatabase";
+        String user = "larry";
         String password = "ILoveCars2000";
 
         return DriverManager.getConnection(url, user, password);
