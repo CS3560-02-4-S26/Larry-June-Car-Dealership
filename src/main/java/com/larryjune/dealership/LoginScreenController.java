@@ -73,6 +73,18 @@ private void handleSubmitLogin(ActionEvent event) throws IOException {
             stage.show();
     
     
+    // Note from backend (Henry):
+    // Here is some general psudocode I wrote up that can possibly help for the login system
+
+    // Method Header: Handle Login
+    // Get the email and the password from the form
+    // Fetch the email from the database since its a unqiue key now using DBControl. 
+    // You can use this as a template: 
+    // ArrayList<Accounts> temp = DBControl.fetchAccountsAt("email",<EMAIL>); 
+    // if the temp.get(0).getPassword().equals(password) then log them in and update
+    // Otherwise, just prompt them by saying login failed or invaild password
+    // Also, if there is an error or exception, thats probally because the email does not exist
+    // To fix that please do error handing, and tell the user invaild email
 }
 
 }

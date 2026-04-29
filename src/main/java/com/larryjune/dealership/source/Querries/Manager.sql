@@ -1,7 +1,7 @@
 USE larryjunedatabase;
 
 CREATE TABLE ManagerAccount(
-	managerAccountID INT,
+	managerAccountID INT PRIMARY KEY,
     managerstatus VARCHAR(255),
     FOREIGN KEY (managerAccountID) REFERENCES EmployeeAccount(employeeAccountID)
 );

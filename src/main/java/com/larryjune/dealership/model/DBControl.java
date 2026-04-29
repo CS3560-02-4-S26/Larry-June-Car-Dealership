@@ -20,7 +20,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM accidentdata";
+            String sql = "SELECT * FROM AccidentData";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             ResultSet rs = stmt.executeQuery();
@@ -54,7 +54,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM accidentdata WHERE " + column + " "+ sign +" ?";
+            String sql = "SELECT * FROM AccidentData WHERE " + column + " "+ sign +" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "accidentID":
@@ -107,7 +107,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM accounts";
+            String sql = "SELECT * FROM Accounts";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             ResultSet rs1 = stmt.executeQuery();
@@ -141,7 +141,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM accounts WHERE " + column + " = ?";
+            String sql = "SELECT * FROM Accounts WHERE " + column + " = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "accountID":
@@ -189,8 +189,8 @@ public class DBControl {
             String sql = "SELECT acc.accountID, acc.firstName, "+
             "acc.lastName, acc.phone, acc.accountPassword, acc.email," +
             "acc.shippingAddress " +
-            "FROM customeraccount cus "+
-            "JOIN accounts acc ON cus.customerAccountID = acc.accountID";
+            "FROM CustomerAccount cus "+
+            "JOIN Accounts acc ON cus.customerAccountID = acc.accountID";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             ResultSet rs1 = stmt.executeQuery();
@@ -226,8 +226,8 @@ public class DBControl {
             String sql = "SELECT acc.accountID, acc.firstName, "+
             "acc.lastName, acc.phone, acc.accountPassword, acc.email," +
             "acc.shippingAddress " +
-            "FROM customeraccount cus "+
-            "JOIN accounts acc ON cus.customerAccountID = acc.accountID "+
+            "FROM CustomerAccount cus "+
+            "JOIN Accounts acc ON cus.customerAccountID = acc.accountID "+
             "WHERE "+column+" "+sign+" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
@@ -354,8 +354,8 @@ public class DBControl {
             String sql = "SELECT acc.accountID, acc.firstName, "+
             "acc.lastName, acc.phone, acc.accountPassword, acc.email," +
             "acc.shippingAddress, emp.totalSales " +
-            "FROM employeeaccount emp "+
-            "JOIN accounts acc ON emp.employeeAccountID = acc.accountID";
+            "FROM EmployeeAccount emp "+
+            "JOIN Accounts acc ON emp.employeeAccountID = acc.accountID";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             ResultSet rs1 = stmt.executeQuery();
@@ -392,8 +392,8 @@ public class DBControl {
             String sql = "SELECT acc.accountID, acc.firstName, "+
             "acc.lastName, acc.phone, acc.accountPassword, acc.email," +
             "acc.shippingAddress, emp.totalSales " +
-            "FROM employeeaccount emp "+
-            "JOIN accounts acc ON emp.employeeAccountID = acc.accountID " +
+            "FROM EmployeeAccount emp "+
+            "JOIN Accounts acc ON emp.employeeAccountID = acc.accountID " +
             "WHERE "+column+" "+sign+" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
@@ -510,9 +510,9 @@ public class DBControl {
             String sql = "SELECT acc.accountID, acc.firstName, "+
             "acc.lastName, acc.phone, acc.accountPassword, acc.email," +
             "acc.shippingAddress, emp.totalSales, man.managerstatus " +
-            "FROM manageraccount man "+
-            "JOIN employeeaccount emp ON man.managerAccountID = emp.employeeAccountID "+
-            "JOIN accounts acc ON emp.employeeAccountID = acc.accountID;";
+            "FROM ManagerAccount man "+
+            "JOIN EmployeeAccount emp ON man.managerAccountID = emp.employeeAccountID "+
+            "JOIN Accounts acc ON emp.employeeAccountID = acc.accountID;";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             ResultSet rs1 = stmt.executeQuery();
@@ -550,9 +550,9 @@ public class DBControl {
             String sql = "SELECT acc.accountID, acc.firstName, "+
             "acc.lastName, acc.phone, acc.accountPassword, acc.email," +
             "acc.shippingAddress, emp.totalSales, man.managerstatus " +
-            "FROM manageraccount man "+
-            "JOIN employeeaccount emp ON man.managerAccountID = emp.employeeAccountID "+
-            "JOIN accounts acc ON emp.employeeAccountID = acc.accountID " +
+            "FROM ManagerAccount man "+
+            "JOIN EmployeeAccount emp ON man.managerAccountID = emp.employeeAccountID "+
+            "JOIN Accounts acc ON emp.employeeAccountID = acc.accountID " +
             "WHERE "+column+" "+sign+" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
@@ -602,7 +602,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM sale";
+            String sql = "SELECT * FROM Sale";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             ResultSet rs1 = stmt.executeQuery();
@@ -637,7 +637,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM sale WHERE " + column + " " +sign +" ?";
+            String sql = "SELECT * FROM Sale WHERE " + column + " " +sign +" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "saleID":
@@ -684,7 +684,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM service";
+            String sql = "SELECT * FROM Service";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             ResultSet rs1 = stmt.executeQuery();
@@ -717,7 +717,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM service WHERE " + column + " "+sign+" ?";
+            String sql = "SELECT * FROM Service WHERE " + column + " "+sign+" ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "serviceID":
@@ -765,7 +765,7 @@ public class DBControl {
 
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "SELECT * FROM vehicledata";
+            String sql = "SELECT * FROM vehicleData";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             ResultSet rs1 = stmt.executeQuery();
@@ -867,7 +867,7 @@ public class DBControl {
      */
     public static boolean InsertAccident(Accident n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO accidentdata (vehicleID, dateOfAccident, severity, descOfAccident, airbagDeployment) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO AccidentData (vehicleID, dateOfAccident, severity, descOfAccident, airbagDeployment) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, n.getVehicle().getVehicleID());
             stmt.setDate(2, n.getDateOfAccident());
@@ -885,24 +885,27 @@ public class DBControl {
 
     /**
      * Inserts a new entry to the Account Database
+     * NOTE: PLEASE DO NOT USE INSERTACCOUNT, USE INSERTCUSTOMER, INSERTMANAGER, and INSERTEMPLOYEE
+     *       THOSE METHODS ALREADY RECURSIVELY CALL THIS METHOD, and also its more proper if we do 
+     *       it that way
      * @param n the account entry
      * @return if the entry is sucessfully added, then "true", otherwise "false"
      * @throws Exception Failure to add, prints "false"
      */
-    public static boolean InsertAccount(Account n) throws Exception {
+    private static boolean InsertAccount(Account n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO accounts (accountID, firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Accounts (firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getAccountID());
-            stmt.setString(2, n.getFirstName());
-            stmt.setString(3, n.getLastName());
-            stmt.setString(4, n.getPhoneNum());
-            stmt.setString(5, "ABC123"); //Please make a password attribute for account
-            stmt.setString(6, n.getEmail());
-            stmt.setString(7, n.getShippingAddress());
+            stmt.setString(1, n.getFirstName());
+            stmt.setString(2, n.getLastName());
+            stmt.setString(3, n.getPhoneNum());
+            stmt.setString(4, n.getPassword()); 
+            stmt.setString(5, n.getEmail());
+            stmt.setString(6, n.getShippingAddress());
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
 
@@ -918,12 +921,14 @@ public class DBControl {
     public static boolean InsertCustomer(Customer n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getPassword()));
-            String sql = "INSERT INTO customeraccount (customerAccountID) VALUES (?)";
+            ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
+            String sql = "INSERT INTO CustomerAccount (customerAccountID) VALUES (?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getAccountID());
+            stmt.setInt(1, temp.get(0).getAccountID());
             stmt.executeUpdate();
             conn.close();
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
             return false;
         }
         return true;
@@ -963,9 +968,10 @@ public class DBControl {
     public static boolean InsertEmployee(Employee n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getPassword()));
-            String sql = "INSERT INTO employeeaccount (employeeAccountID, totalSales) VALUES (?, ?)";
+            ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
+            String sql = "INSERT INTO EmployeeAccount (employeeAccountID, totalSales) VALUES (?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getAccountID());
+            stmt.setInt(1, temp.get(0).getAccountID());
             stmt.setDouble(2, n.getTotalSalesPerMonth());
             stmt.executeUpdate();
             conn.close();
@@ -1007,9 +1013,10 @@ public class DBControl {
     public static boolean InsertManager(Manager n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             InsertEmployee(new Employee(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getTotalSalesPerMonth(), n.getPassword()));
-            String sql = "INSERT INTO manageraccount (managerAccountID, managerstatus) VALUES (?, ?)";
+            ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
+            String sql = "INSERT INTO ManagerAccount (managerAccountID, managerstatus) VALUES (?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getAccountID());
+            stmt.setInt(1, temp.get(0).getAccountID());
             stmt.setString(2, n.getStatus());
             stmt.executeUpdate();
             conn.close();
@@ -1028,7 +1035,7 @@ public class DBControl {
      */
     public static boolean InsertSale(Sale n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO sale (vehicleID, employeeAccountID, customerAccountID, dateOFSale, amountPaid) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Sale (vehicleID, employeeAccountID, customerAccountID, dateOFSale, amountPaid) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, n.getVehicle().getVehicleID());
             stmt.setInt(2, n.getEmployeeAccount().getAccountID());
@@ -1052,7 +1059,7 @@ public class DBControl {
      */
     public static boolean InsertService(Service n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO service (vehicleID, dateOfService, descriptionOFService, cost, mileage) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Service (vehicleID, dateOfService, descriptionOFService, cost, mileage) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, n.getVehicle().getVehicleID());
             stmt.setDate(2, n.getDateOfService());
@@ -1076,7 +1083,7 @@ public class DBControl {
      */
     public static boolean InsertVehicle(Vehicle n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
-            String sql = "INSERT INTO vehicledata (vinNumber, price, maker, model, color, modelYear, bodyStyle, isUsed, mileage, carStatus, prevOwnerCount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO vehicleData (vinNumber, price, maker, model, color, modelYear, bodyStyle, isUsed, mileage, carStatus, prevOwnerCount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, n.getVinNumber());
             stmt.setDouble(2, n.getPrice());
@@ -1110,7 +1117,7 @@ public class DBControl {
     public static boolean updateAccidents(int id, String column, String val) throws Exception {
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "UPDATE accidentdata SET " + column+ " = ? WHERE accidentID = ?";
+            String sql = "UPDATE AccidentData SET " + column+ " = ? WHERE accidentID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "accidentID":
@@ -1156,7 +1163,7 @@ public class DBControl {
     public static boolean updateAccount(int id, String column, String val) throws Exception {
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "UPDATE accounts SET " + column+ " = ? WHERE accountID = ?";
+            String sql = "UPDATE Accounts SET " + column+ " = ? WHERE accountID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "accountID":
@@ -1233,7 +1240,7 @@ public class DBControl {
     public static boolean updateEmployee(int id, String column, String val) throws Exception {
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "UPDATE employeeaccount SET " + column+ " = ? WHERE employeeAccountID = ?";
+            String sql = "UPDATE EmployeeAccount SET " + column+ " = ? WHERE employeeAccountID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "employeeAccountID":
@@ -1300,7 +1307,7 @@ public class DBControl {
     public static boolean updateManager(int id, String column, String val) throws Exception {
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "UPDATE manageraccount SET " + column+ " = ? WHERE managerAccountID = ?";
+            String sql = "UPDATE ManagerAccount SET " + column+ " = ? WHERE managerAccountID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "managerAccountID":
@@ -1334,7 +1341,7 @@ public class DBControl {
     public static boolean updateSale(int id, String column, String val) throws Exception {
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "UPDATE sale SET " + column+ " = ? WHERE saleID = ?";
+            String sql = "UPDATE Sale SET " + column+ " = ? WHERE saleID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "saleID":
@@ -1372,7 +1379,7 @@ public class DBControl {
     public static boolean updateService(int id, String column, String val) throws Exception {
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "UPDATE service SET " + column+ " = ? WHERE serviceID = ?";
+            String sql = "UPDATE Service SET " + column+ " = ? WHERE serviceID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "serviceID":
@@ -1413,7 +1420,7 @@ public class DBControl {
     public static boolean updateVehicleData(int id, String column, String val) throws Exception {
         try (Connection conn = DBConnection.connect()) {
 
-            String sql = "UPDATE vehicledata SET " + column+ " = ? WHERE vehicleID = ?";
+            String sql = "UPDATE vehicleData SET " + column+ " = ? WHERE vehicleID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             switch (column) {
                 case "price":
