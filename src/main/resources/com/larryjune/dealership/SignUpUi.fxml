@@ -12,51 +12,49 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.InsertAccountController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.InsertAccountController">
    <children>
-      <VBox layoutX="-1.0" layoutY="-2.0" prefHeight="709.0" prefWidth="887.0">
+      <VBox layoutX="-1.0" layoutY="-2.0">
          <children>
-            <HBox prefHeight="107.0" prefWidth="890.0" style="-fx-background-color: black;">
+            <HBox style="-fx-background-color: black;">
                <children>
-                  <VBox prefHeight="100.0" prefWidth="278.0">
+                  <ImageView fitHeight="126.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@logo.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT">
                      <children>
-                        <Label prefHeight="61.0" prefWidth="276.0" style="-fx-font-size: 25; -fx-text-fill: White; -fx-font-weight: bold;" text="Larry June Dealership">
+                        <Label style="-fx-font-size: 25; -fx-text-fill: White; -fx-font-weight: bold;" text="Larry June Dealership">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="21.0" prefWidth="180.0" style="-fx-font-size: 12; -fx-text-fill: grey; -fx-font-weight: bold;" text="Where the Wheels Take You">
+                        <Label style="-fx-font-size: 12; -fx-text-fill: grey; -fx-font-weight: bold;" text="Where the Wheels Take You">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
                         </Label>
                      </children>
                   </VBox>
-                  <HBox prefHeight="114.0" prefWidth="441.0" />
-                  <ImageView fitHeight="126.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@logo.png" />
-                     </image>
-                  </ImageView>
                </children>
             </HBox>
             <StackPane prefHeight="601.0" prefWidth="889.0">
                <children>
-                  <VBox maxHeight="441.0" maxWidth="401.0" prefHeight="441.0" prefWidth="401.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-padding: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 15, 0.2, 0, 4); -fx-spacing: 16;">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-color: white; -fx-background-radius: 14; -fx-padding: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 15, 0.2, 0, 4); -fx-spacing: 16;">
                      <children>
-                        <Label prefHeight="34.0" prefWidth="317.0" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: black;" text="              Sign Up" />
+                        <Label style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: black;" text="Sign Up" />
                         <TextField fx:id="firstNameField" promptText="First Name" style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-color: grey; -fx-border-radius: 8; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
                         <TextField fx:id="lastNameField" promptText="Last Name" style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: grey; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
                         <TextField fx:id="emailField" promptText="Email " style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: grey; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
                         <TextField fx:id="phoneField" promptText="Phone Number (000-000-000)" style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: grey; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
-                        <TextField fx:id="shippingAddressField"
-                        promptText="Address" style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: grey; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
+                        <TextField fx:id="shippingAddressField" promptText="Address" style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: grey; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
                         <PasswordField fx:id="passwordField" promptText="Enter Password" style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-color: grey; -fx-border-radius: 8; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
                         <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" style="-fx-background-color: #f8f8f8; -fx-background-radius: 8; -fx-border-color: grey; -fx-border-radius: 8; -fx-padding: 10 12 10 12; -fx-font-size: 13;" />
                         
-                        <Label fx:id="statusLabel" style="-fx-text-fill: red; -fx-font-size: 12;" text="" />
+                                                            <Label fx:id="statusLabel" style="-fx-text-fill: red; -fx-font-size: 12;" text="" />
                        
-                        <HBox prefHeight="53.0" prefWidth="340.0" spacing="20.0">
+                                                            <HBox prefHeight="53.0" prefWidth="340.0" spacing="20.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#handleBack" style="-fx-background-color: transparent; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #9a9a9a; -fx-text-fill: #333333; -fx-font-size: 13; -fx-padding: 10 20 10 20;" text="Back" />
                               <Button mnemonicParsing="false" onAction="#handleSignUp" style="-fx-background-color: transparent; -fx-border-radius: 8; -fx-background-radius: 8; -fx-text-fill: #333333; -fx-font-size: 13; -fx-padding: 10 20 10 20; -fx-border-color: #9a9a9a;" text="Enter" />
@@ -65,6 +63,9 @@
                      </children>
                   </VBox>
                </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
             </StackPane>
          </children>
       </VBox>
