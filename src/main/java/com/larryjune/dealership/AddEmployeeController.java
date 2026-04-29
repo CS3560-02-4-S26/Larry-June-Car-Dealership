@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -48,9 +49,17 @@ public class AddEmployeeController {
         }
         catch(Exception err)
         {
-            System.out.println("Warning, there is a part of a text that does not make sense");
+            showError("Error","Error","One of your values is either null, or is inputed incorrectly");
         }
+        
 
+    }
+    private void showError(String title, String header, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }
