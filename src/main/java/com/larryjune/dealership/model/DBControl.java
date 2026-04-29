@@ -47,7 +47,7 @@ public class DBControl {
             ArrayList<Vehicle> v = fetchVehicleDataAt("vehicleID", ""+id, "=");
             results.add(new Accident(
                     rs.getInt("accidentID"),
-                    v.get(0),
+                    v.getFirst(),
                     rs.getDate("dateOFAccident"),
                     rs.getString("severity"),
                     rs.getBoolean("airbagDeployment"),
@@ -58,7 +58,7 @@ public class DBControl {
     }
 
     /**
-     * Fetches entries that match a specfic criteria
+     * Fetches entries that match a specific criteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
      * @param sign the comparitor that will match the data with val
@@ -86,11 +86,7 @@ public class DBControl {
                 stmt.setString(1, val);
                 break;
             case "airbagDeployment":
-                if (val.equals("true")) {
-                    stmt.setBoolean(1, true);
-                } else {
-                    stmt.setBoolean(1, false);
-                }
+                stmt.setBoolean(1, val.equals("true"));
                 break;
             default:
                 stmt.setInt(1, Integer.parseInt(val));
@@ -103,7 +99,7 @@ public class DBControl {
             ArrayList<Vehicle> v = fetchVehicleDataAt("vehicleID", ""+id, "=");
             results.add(new Accident(
                     rs.getInt("accidentID"),
-                    v.get(0),
+                    v.getFirst(),
                     rs.getDate("dateOFAccident"),
                     rs.getString("severity"),
                     rs.getBoolean("airbagDeployment"),
@@ -145,10 +141,9 @@ public class DBControl {
     }
 
     /**
-     * Fetches entries that match a specfic conncriteria
+     * Fetches entries that match a specific conncriteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
-     * @param sign the comparitor that will match the data with val
      * @return An ArrayList of Account Objects from the database 
      * @throws Exception Failure to fetch
      */
@@ -224,7 +219,7 @@ public class DBControl {
     }
 
     /**
-     * Fetches entries that match a specfic criteria
+     * Fetches entries that match a specific criteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
      * @param sign the comparitor that will match the data with val
@@ -296,19 +291,19 @@ public class DBControl {
             int aid = rs1.getInt("accidentID");
             results.add(new Damage(
                     rs1.getInt("damageID"),
-                    fetchVehicleDataAt("vehicleID", ""+vid, "=").get(0),
-                    fetchAccidentsAt("accidentID", ""+aid, "=").get(0).getDateOfAccident(),
+                    fetchVehicleDataAt("vehicleID", ""+vid, "=").getFirst(),
+                    fetchAccidentsAt("accidentID", ""+aid, "=").getFirst().getDateOfAccident(),
                     rs1.getString("locationOfDamage"),
                     rs1.getString("severity"),
                     rs1.getInt("repairCost"),
-                    fetchAccidentsAt("accidentID", ""+aid, "=").get(0)));
+                    fetchAccidentsAt("accidentID", ""+aid, "=").getFirst()));
         }
 
         return results;
     }
     
     /**
-     * Fetches entries that match a specfic criteria
+     * Fetches entries that match a specific criteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
      * @param sign the comparitor that will match the data with val
@@ -345,12 +340,12 @@ public class DBControl {
             int aid = rs1.getInt("accidentID");
             results.add(new Damage(
                     rs1.getInt("damageID"),
-                    fetchVehicleDataAt("vehicleID", ""+vid, "=").get(0),
-                    fetchAccidentsAt("accidentID", ""+aid, "=").get(0).getDateOfAccident(),
+                    fetchVehicleDataAt("vehicleID", ""+vid, "=").getFirst(),
+                    fetchAccidentsAt("accidentID", ""+aid, "=").getFirst().getDateOfAccident(),
                     rs1.getString("locationOfDamage"),
                     rs1.getString("severity"),
                     rs1.getInt("repairCost"),
-                    fetchAccidentsAt("accidentID", ""+aid, "=").get(0)));
+                    fetchAccidentsAt("accidentID", ""+aid, "=").getFirst()));
         }
 
         return results;
@@ -392,7 +387,7 @@ public class DBControl {
     }
 
     /**
-     * Fetches entries that match a specfic criteria
+     * Fetches entries that match a specific criteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
      * @param sign the comparitor that will match the data with val
@@ -473,10 +468,9 @@ public class DBControl {
     }
 
     /**
-     * Fetches entries that match a specfic criteria
+     * Fetches entries that match a specific criteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
-     * @param sign the comparitor that will match the data with val
      * @return An ArrayList of Image Objects from the database 
      * @throws Exception Failure to fetch
      */
@@ -547,7 +541,7 @@ public class DBControl {
     }
 
     /**
-     * Fetches entries that match a specfic criteria
+     * Fetches entries that match a specific criteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
      * @param sign the comparitor that will match the data with val
@@ -627,9 +621,9 @@ public class DBControl {
             int cid = rs1.getInt("customerAccountID");
             results.add(new Sale(
                     rs1.getInt("saleID"),
-                    fetchVehicleDataAt("vehicleID", vid+"", "=").get(0),
-                    fetchEmployeeAt("employeeAccountID", eid+"", "=").get(0),
-                    fetchCustomerAt("customerAccountID", cid+"", "=").get(0),
+                    fetchVehicleDataAt("vehicleID", vid+"", "=").getFirst(),
+                    fetchEmployeeAt("employeeAccountID", eid+"", "=").getFirst(),
+                    fetchCustomerAt("customerAccountID", cid+"", "=").getFirst(),
                     rs1.getDate("dateOFSale"),
                     rs1.getInt("amountPaid")));
         }
@@ -638,7 +632,7 @@ public class DBControl {
     }
 
     /**
-     * Fetches entries that match a specfic criteria
+     * Fetches entries that match a specific criteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
      * @param sign the comparitor that will match the data with val
@@ -678,9 +672,9 @@ public class DBControl {
             int cid = rs1.getInt("customerAccountID");
             results.add(new Sale(
                     rs1.getInt("saleID"),
-                    fetchVehicleDataAt("vehicleID", vid+"", "=").get(0),
-                    fetchEmployeeAt("employeeAccountID", eid+"", "=").get(0),
-                    fetchCustomerAt("customerAccountID", cid+"", "=").get(0),
+                    fetchVehicleDataAt("vehicleID", vid+"", "=").getFirst(),
+                    fetchEmployeeAt("employeeAccountID", eid+"", "=").getFirst(),
+                    fetchCustomerAt("customerAccountID", cid+"", "=").getFirst(),
                     rs1.getDate("dateOFSale"),
                     rs1.getInt("amountPaid")));
         }
@@ -708,7 +702,7 @@ public class DBControl {
             int vid = rs1.getInt("vehicleID");
             results.add(new Service(
                     rs1.getInt("serviceID"),
-                    fetchVehicleDataAt("vehicleID", ""+vid, "=").get(0),
+                    fetchVehicleDataAt("vehicleID", ""+vid, "=").getFirst(),
                     rs1.getDate("dateOfService"),
                     rs1.getString("descriptionOFService"),
                     rs1.getInt("cost"),
@@ -719,7 +713,7 @@ public class DBControl {
     }
 
     /**
-     * Fetches entries that match a specfic criteria
+     * Fetches entries that match a specific criteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
      * @param sign the comparitor that will match the data with val
@@ -760,7 +754,7 @@ public class DBControl {
             int vid = rs1.getInt("vehicleID");
             results.add(new Service(
                     rs1.getInt("serviceID"),
-                    fetchVehicleDataAt("vehicleID", ""+vid, "=").get(0),
+                    fetchVehicleDataAt("vehicleID", ""+vid, "=").getFirst(),
                     rs1.getDate("dateOfService"),
                     rs1.getString("descriptionOFService"),
                     rs1.getInt("cost"),
@@ -806,7 +800,7 @@ public class DBControl {
     }
 
     /**
-     * Fetches entries that match a specfic criteria
+     * Fetches entries that match a specific criteria
      * @param column the type of data you want to fetch
      * @param val the criteria that you want
      * @param sign the comparitor that will match the data with val
@@ -842,11 +836,7 @@ public class DBControl {
                 stmt.setString(1, val);
                 break;
             case "isUsed":
-                if (val.equals("true")) {
-                    stmt.setBoolean(1, true);
-                } else {
-                    stmt.setBoolean(1, false);
-                }
+                stmt.setBoolean(1, val.equals("true"));
                 break;
             default:
                 stmt.setInt(1, Integer.parseInt(val));
@@ -877,7 +867,6 @@ public class DBControl {
     /**
      * Inserts a new entry to the Accident Database
      * @param n the accident entry
-     * @return if the entry is sucessfully added, then "true", otherwise "false"
      * @throws Exception Failure to add, prints "false"
      */
     public static void InsertAccident(Accident n) throws Exception {
@@ -901,7 +890,6 @@ public class DBControl {
      *       THOSE METHODS ALREADY RECURSIVELY CALL THIS METHOD, and also its more proper if we do 
      *       it that way
      * @param n the account entry
-     * @return if the entry is sucessfully added, then "true", otherwise "false"
      * @throws Exception Failure to add, prints "false"
      */
     private static void InsertAccount(Account n) throws Exception {
@@ -923,7 +911,6 @@ public class DBControl {
     /**
      * Inserts a new entry to the Customer Database
      * @param n the customer entry
-     * @return if the entry is sucessfully added, then "true", otherwise "false"
      * @throws Exception Failure to add, prints "false"
      */
     public static void InsertCustomer(Customer n) throws Exception {
@@ -935,14 +922,13 @@ public class DBControl {
         ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
         String sql = "INSERT INTO CustomerAccount (customerAccountID) VALUES (?)";
         PreparedStatement stmt = mDBConnection.prepareStatement(sql);
-        stmt.setInt(1, temp.get(0).getAccountID());
+        stmt.setInt(1, temp.getFirst().getAccountID());
         stmt.executeUpdate();
     }
 
     /**
      * Inserts a new entry to the Damage Database
      * @param n the damage entry
-     * @return if the entry is sucessfully added, then "true", otherwise "false"
      * @throws Exception Failure to add
      */
     public static void InsertDamage(Damage n) throws Exception {
@@ -971,7 +957,7 @@ public class DBControl {
         ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
         String sql = "INSERT INTO EmployeeAccount (employeeAccountID, totalSales) VALUES (?, ?)";
         PreparedStatement stmt = mDBConnection.prepareStatement(sql);
-        stmt.setInt(1, temp.get(0).getAccountID());
+        stmt.setInt(1, temp.getFirst().getAccountID());
         stmt.setDouble(2, n.getTotalSalesPerMonth());
         stmt.executeUpdate();
     }
@@ -997,7 +983,6 @@ public class DBControl {
     /**
      * Inserts a new entry to the Manager Database
      * @param n the manager entry
-     * @return if the entry is sucessfully added, then "true", otherwise "false"
      * @throws Exception Failure to add, prints "false"
      */
     public static void InsertManager(Manager n) throws Exception {
@@ -1009,7 +994,7 @@ public class DBControl {
         ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
         String sql = "INSERT INTO ManagerAccount (managerAccountID, managerstatus) VALUES (?, ?)";
         PreparedStatement stmt = mDBConnection.prepareStatement(sql);
-        stmt.setInt(1, temp.get(0).getAccountID());
+        stmt.setInt(1, temp.getFirst().getAccountID());
         stmt.setString(2, n.getStatus());
         stmt.executeUpdate();
     }
@@ -1037,7 +1022,6 @@ public class DBControl {
     /**
      * Inserts a new entry to the Service Database
      * @param n the Service entry
-     * @return if the entry is sucessfully added, then "true", otherwise "false"
      * @throws Exception Failure to add, prints "false"
      */
     public static void InsertService(Service n) throws Exception {
@@ -1054,7 +1038,6 @@ public class DBControl {
     /**
      * Inserts a new entry to the Vehicle Database
      * @param n the vehicle entry
-     * @return if the entry is sucessfully added, then "true", otherwise "false"
      * @throws Exception Failure to add, prints "false"
      */
     public static void InsertVehicle(Vehicle n) throws Exception {
@@ -1076,11 +1059,10 @@ public class DBControl {
 
     //Update Methods
     /**
-     * Updates entrys in the table
+     * Updates entries in the table
      * @param id the id
      * @param column column
      * @param val value
-     * @return True if it updates, false otherwise
      * @throws Exception An issue with the database connection occurred.
      */
     public static void updateAccidents(int id, String column, String val) throws Exception {
@@ -1103,11 +1085,7 @@ public class DBControl {
                 stmt.setString(1, val);
                 break;
             case "airbagDeployment":
-                if (val.equals("true")) {
-                    stmt.setBoolean(1, true);
-                } else {
-                    stmt.setBoolean(1, false);
-                }
+                stmt.setBoolean(1, val.equals("true"));
                 break;
             default:
                 stmt.setInt(1, Integer.parseInt(val));
@@ -1118,11 +1096,10 @@ public class DBControl {
     }
 
     /**
-     * Updates entrys in the table
+     * Updates general account entries in the table
      * @param id the id
      * @param column column
      * @param val value
-     * @return True if it updates, false otherwise
      * @throws Exception An issue with the database connection occurred.
      */
     public static void updateAccount(int id, String column, String val) throws Exception {
@@ -1153,7 +1130,7 @@ public class DBControl {
     }
 
     /**
-     * Updates entrys in the table
+     * Updates vehicle damage entries in the table
      * @param id the id
      * @param column column
      * @param val value
@@ -1186,7 +1163,7 @@ public class DBControl {
     }
 
     /**
-     * Updates entrys in the table
+     * Updates employee account entries in the table
      * @param id the id
      * @param column column
      * @param val value
@@ -1209,7 +1186,7 @@ public class DBControl {
     }
 
     /**
-     * Updates entrys in the table
+     * Updates image entries in the table
      * @param id the id
      * @param column column
      * @param val value
@@ -1239,7 +1216,7 @@ public class DBControl {
     }
 
     /**
-     * Updates entrys in the table
+     * Updates manager entries in the table
      * @param id the id
      * @param column column
      * @param val value
@@ -1268,7 +1245,7 @@ public class DBControl {
     }
 
     /**
-     * Updates entrys in the table
+     * Updates sale entries in the table
      * @param id the id
      * @param column column
      * @param val value
@@ -1300,7 +1277,7 @@ public class DBControl {
     }
 
     /**
-     * Updates entrys in the table
+     * Updates service entries in the table
      * @param id the id
      * @param column column
      * @param val value
@@ -1336,7 +1313,7 @@ public class DBControl {
     }
 
     /**
-     * Updates entrys in the table
+     * Updates vehicle data entries in the table
      * @param id the id
      * @param column column
      * @param val value
@@ -1369,14 +1346,7 @@ public class DBControl {
                 stmt.setString(1, val);
                 break;
             case "isUsed":
-                if (val.equals("true")) {
-                    stmt.setBoolean(1, true);
-                } else {
-                    stmt.setBoolean(1, false);
-                }
-                break;
-            default:
-                stmt.setInt(1, Integer.parseInt(val));
+                stmt.setBoolean(1, val.equals("true"));
                 break;
         }
 
