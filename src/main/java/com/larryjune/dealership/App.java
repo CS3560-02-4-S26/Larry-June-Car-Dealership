@@ -3,6 +3,7 @@ package com.larryjune.dealership;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -21,6 +22,7 @@ public class App extends Application {
 
         // Setup our stage and show everything
         stage.setTitle("Larry June Dealership");
+        stage.getIcons().add(new Image(getClass().getResource("/com/larryjune/dealership/logo.png").toString()));
         stage.setScene(mainScene);
         stage.show();
     }
