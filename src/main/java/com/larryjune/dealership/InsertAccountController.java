@@ -86,20 +86,13 @@ public class InsertAccountController {
         try{
             Customer account = new Customer(0, firstName, lastName, email, phone, address,
                 password);
-            boolean inserted = DBControl.InsertCustomer(account);
+            DBControl.InsertCustomer(account);
+            statusLabel.setText("Account successfully Created");
 
-            if(inserted){
-                statusLabel.setText("Account succesfully Created");
-
-
-            }else{
-                statusLabel.setText("Account could not be created");
-            }
-
-            //Error handeling 
+            //Error handeling
         }catch (Exception e){
             e.printStackTrace();
-            statusLabel.setText("Error in Account Creation");
+            statusLabel.setText("Account could not be created.");
         }
    
     }
