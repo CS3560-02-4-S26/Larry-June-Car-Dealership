@@ -5,6 +5,6 @@ import java.sql.Date;
 
 public class testing {
     public static void main(String[] args) throws Exception {
-        System.out.println(DBControl.updateAccidents(6,"severity","absolutely cooked, like burnt dopwn the kitchen"));
+        System.out.println(DBControl.InsertCustomer(new Customer(0, "Mega Knight","Clash ROyale", "heheheheha@gmail.com", "1-800-1234", "Midladder", "Jynxzi Sucks at Clash")));
     }
 }

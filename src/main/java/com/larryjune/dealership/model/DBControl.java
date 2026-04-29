@@ -918,12 +918,14 @@ public class DBControl {
     public static boolean InsertCustomer(Customer n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getPassword()));
+            ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
             String sql = "INSERT INTO CustomerAccount (customerAccountID) VALUES (?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getAccountID());
+            stmt.setInt(1, temp.get(0).getAccountID());
             stmt.executeUpdate();
             conn.close();
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
             return false;
         }
         return true;
