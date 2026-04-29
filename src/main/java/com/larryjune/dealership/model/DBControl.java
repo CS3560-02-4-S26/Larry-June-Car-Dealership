@@ -885,11 +885,14 @@ public class DBControl {
 
     /**
      * Inserts a new entry to the Account Database
+     * NOTE: PLEASE DO NOT USE INSERTACCOUNT, USE INSERTCUSTOMER, INSERTMANAGER, and INSERTEMPLOYEE
+     *       THOSE METHODS ALREADY RECURSIVELY CALL THIS METHOD, and also its more proper if we do 
+     *       it that way
      * @param n the account entry
      * @return if the entry is sucessfully added, then "true", otherwise "false"
      * @throws Exception Failure to add, prints "false"
      */
-    public static boolean InsertAccount(Account n) throws Exception {
+    private static boolean InsertAccount(Account n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             String sql = "INSERT INTO Accounts (firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -965,9 +968,10 @@ public class DBControl {
     public static boolean InsertEmployee(Employee n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getPassword()));
+            ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
             String sql = "INSERT INTO EmployeeAccount (employeeAccountID, totalSales) VALUES (?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getAccountID());
+            stmt.setInt(1, temp.get(0).getAccountID());
             stmt.setDouble(2, n.getTotalSalesPerMonth());
             stmt.executeUpdate();
             conn.close();
@@ -1009,9 +1013,10 @@ public class DBControl {
     public static boolean InsertManager(Manager n) throws Exception {
         try (Connection conn = DBConnection.connect()) {
             InsertEmployee(new Employee(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getTotalSalesPerMonth(), n.getPassword()));
+            ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
             String sql = "INSERT INTO ManagerAccount (managerAccountID, managerstatus) VALUES (?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, n.getAccountID());
+            stmt.setInt(1, temp.get(0).getAccountID());
             stmt.setString(2, n.getStatus());
             stmt.executeUpdate();
             conn.close();

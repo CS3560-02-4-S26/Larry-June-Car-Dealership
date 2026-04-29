@@ -1,6 +1,7 @@
 package com.larryjune.dealership;
 
 import com.larryjune.dealership.model.Account;
+import com.larryjune.dealership.model.Customer;
 import com.larryjune.dealership.model.DBControl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -83,9 +84,9 @@ public class InsertAccountController {
         //Checking for account creation
         //Connection to DB 
         try{
-            Account account = new Account(0, firstName, lastName, email, phone, address,
+            Customer account = new Customer(0, firstName, lastName, email, phone, address,
                 password);
-            boolean inserted = DBControl.InsertAccount(account);
+            boolean inserted = DBControl.InsertCustomer(account);
 
             if(inserted){
                 statusLabel.setText("Account succesfully Created");
@@ -100,7 +101,7 @@ public class InsertAccountController {
             e.printStackTrace();
             statusLabel.setText("Error in Account Creation");
         }
-
+   
     }
 
 }
