@@ -6,7 +6,7 @@ CREATE TABLE Accounts(
     lastName VARCHAR(255),
     phone VARCHAR(20),
     accountPassword VARCHAR(30),
-    email VARCHAR(255) PRIMARY KEY,
+    email VARCHAR(255) UNIQUE,
     shippingAddress VARCHAR(255)
 );
 

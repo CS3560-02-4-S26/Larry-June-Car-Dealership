@@ -2,7 +2,7 @@ USE larryjunedatabase;
 
 CREATE TABLE vehicleData(
 	vehicleID INT PRIMARY KEY auto_increment,
-    vinNumber CHAR(17) PRIMARY KEY,
+    vinNumber CHAR(17) UNIQUE,
     price DECIMAL(15, 2),
     maker VARCHAR(255),
     model VARCHAR(255),
