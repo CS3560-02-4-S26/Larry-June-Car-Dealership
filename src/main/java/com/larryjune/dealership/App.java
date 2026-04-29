@@ -17,8 +17,7 @@ public class App extends Application {
         );
 
         // Load the main screen and create a scene for it
-        VBox root = mainScreenLoader.load();
-        Scene mainScene = new Scene(root);
+        Scene mainScene = mainScreenLoader.load();
 
         // Setup our stage and show everything
         stage.setTitle("Larry June Dealership");
