@@ -34,17 +34,27 @@ public class LoginScreenController {
         statusLabel.setText(message);
     }
 
-    @FXML
-    //Handles the back button to return to main screen in Login Page
-    private void handleBack(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(
-                getClass().getResource("/com/larryjune/dealership/MainScreen.fxml"));
+    
+@FXML
+private void handleBack(ActionEvent event) {
+    try {
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/com/larryjune/dealership/MainScreen.fxml")
+        );
+
+        Scene scene = loader.load();  // ✅ NOW matches your <Scene> root
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage.setScene(scene);        // ✅ no new Scene() needed
         stage.setTitle("Larry June Dealership");
         stage.show();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        statusLabel.setText("Could not open main screen: " + e.getMessage());
     }
+}
+
 
    
    //Handles submit button to check if Username and Password correct

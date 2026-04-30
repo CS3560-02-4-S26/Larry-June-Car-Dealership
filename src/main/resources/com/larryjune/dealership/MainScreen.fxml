@@ -17,12 +17,9 @@
 
 <!--Controller Connection-->
 
-
 <Scene xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.MainScreenController">
    <root>
       <VBox alignment="TOP_CENTER">
-      
-      
          <children>
             <AnchorPane style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                <children>
@@ -30,7 +27,7 @@
                   <VBox fillWidth="true" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
             
-                              <!-- Header -->
+                        <!-- Header -->
                         <HBox alignment="CENTER_LEFT" prefHeight="111.0" spacing="15.0" style="-fx-background-color: black; -fx-padding: 10 20 10 20;">
                            <children>
                               <ImageView fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
@@ -39,7 +36,7 @@
                                  </image>
                               </ImageView>
             
-                                    <VBox alignment="CENTER_LEFT" spacing="4.0">
+                              <VBox alignment="CENTER_LEFT" spacing="4.0">
                                  <children>
                                     <Label style="-fx-text-fill: white;" text="Larry June Dealership" textFill="WHITE">
                                        <font>
@@ -50,9 +47,9 @@
                                  </children>
                               </VBox>
             
-                                    <Region HBox.hgrow="ALWAYS" />
+                              <Region HBox.hgrow="ALWAYS" />
             
-                                    <!--Buttons-->
+                              <!--Buttons-->
                               <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Login">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -67,7 +64,7 @@
                            </children>
                         </HBox>
             
-                              <!-- Title -->
+                        <!-- Title -->
                         <HBox alignment="CENTER">
                            <children>
                               <Label style="-fx-text-fill: #222222;" text="Featured Vehicles" textAlignment="CENTER">
@@ -77,6 +74,7 @@
                               </Label>
                            </children>
                         </HBox>
+
                         <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true">
                            <content>
                               <TilePane fx:id="carGrid" alignment="CENTER" hgap="10.0" vgap="10.0">
