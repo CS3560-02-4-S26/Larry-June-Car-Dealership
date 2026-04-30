@@ -54,6 +54,26 @@ public class AddEmployeeController {
         
 
     }
+    @FXML
+    private void exitAction(ActionEvent event) {
+        try
+        {
+            Parent root = FXMLLoader.load(
+                getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 1000, 900));
+            stage.setTitle("Manager UI");
+            stage.show();
+        }
+        catch(Exception err)
+        {
+            showError("Error","Error","One of your values is either null, or is inputed incorrectly");
+        }
+        
+
+    }
+    
     private void showError(String title, String header, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

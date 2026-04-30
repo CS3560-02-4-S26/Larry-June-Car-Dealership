@@ -82,7 +82,12 @@
             <TextField fx:id="password" prefHeight="47.0" prefWidth="234.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
-      <Button fx:id="confirm" layoutX="179.0" layoutY="344.0" mnemonicParsing="false" onAction="#confirmAction" prefHeight="46.0" prefWidth="223.0" style="-fx-background-color: black;" text="Confirm" textFill="WHITE">
+      <Button fx:id="confirm" layoutX="68.0" layoutY="340.0" mnemonicParsing="false" onAction="#confirmAction" prefHeight="46.0" prefWidth="223.0" style="-fx-background-color: black;" text="Confirm" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="confirm1" layoutX="294.0" layoutY="340.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="46.0" prefWidth="223.0" style="-fx-background-color: black;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
