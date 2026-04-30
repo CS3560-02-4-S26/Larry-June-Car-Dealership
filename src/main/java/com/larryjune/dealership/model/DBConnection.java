@@ -12,8 +12,11 @@ public class DBConnection {
      */
     public static Connection connect() throws SQLException {
         String url = "jdbc:mysql://gperson.chickenkiller.com:3306/larryjunedatabase";
+    
         String user = "larry";
+        
         String password = "ILoveCars2000";
+       
 
         return DriverManager.getConnection(url, user, password);
     }

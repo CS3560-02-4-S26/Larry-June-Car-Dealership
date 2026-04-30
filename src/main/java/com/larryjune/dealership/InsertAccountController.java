@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import java.util.ArrayList;
 
 public class InsertAccountController {
 
@@ -35,11 +36,12 @@ public class InsertAccountController {
     @FXML 
     private PasswordField confirmPasswordField;
 
-    @FXML
-    private Label statusLabel;
-
     @FXML 
     private TextField shippingAddressField;
+
+    @FXML 
+    private Label statusLabel;
+    
 
     @FXML
     private void handleBack(ActionEvent event){
@@ -81,19 +83,38 @@ public class InsertAccountController {
             return;
         }
 
-        //Checking for account creation
-        //Connection to DB 
-        try{
-            Customer account = new Customer(0, firstName, lastName, email, phone, address,
-                password);
-            DBControl.InsertCustomer(account);
-            statusLabel.setText("Account successfully Created");
+        
+            //Fetches from the DB if account already Created
+            try{
+                ArrayList<Account> existingAccounts = DBControl.fetchAccountsAt("email", email);
+              
+                if(!existingAccounts.isEmpty()){
+                    statusLabel.setText("Ac account has already been created ");
+                    return;
+                }
 
-            //Error handeling
-        }catch (Exception e){
-            e.printStackTrace();
-            statusLabel.setText("Account could not be created.");
-        }
+                Customer account = new Customer(0, firstName, lastName, email, phone, address, password);
+               
+                //Inserting into the DB
+                DBControl.InsertCustomer(account);
+
+                FXMLLoader loader= new FXMLLoader(
+                   getClass().getResource("/com/larryjune/dealership/LoginScreen.fxml"));
+
+                   Parent root = loader.load();
+                   LoginScreenController controller = loader.getController();
+
+                   controller.setStatusMessage("Account Successfull. Please Log in");
+
+                   Stage stage = (Stage) firstNameField.getScene().getWindow();
+                   stage.setScene(new Scene(root, 1000,900));
+                   stage.setTitle("Login");
+                   stage.show();
+                
+            }catch (Exception e){
+                e.printStackTrace();
+                statusLabel.setText("ERROR " + e.getMessage());
+            }
    
     }
 

@@ -1,6 +1,10 @@
 package com.larryjune.dealership;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import com.larryjune.dealership.model.Account;
+import com.larryjune.dealership.model.DBControl;
+import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +16,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginScreenController {
-
+    @FXML 
+    private Label statusLabel;
+   
+  
     @FXML
     private TextField usernameField;
+
      @FXML
     private PasswordField passwordField;
     
@@ -22,45 +30,88 @@ public class LoginScreenController {
     private static final String ManagerUsername = "YunoMiles";
     private static final String ManagerPassword = "676921";
 
+    public void setStatusMessage(String message){
+        statusLabel.setText(message);
+    }
+
     @FXML
     //Handles the back button to return to main screen in Login Page
     private void handleBack(ActionEvent event) throws IOException {
-        Scene loginScene = FXMLLoader.load(
+        Parent root = FXMLLoader.load(
                 getClass().getResource("/com/larryjune/dealership/MainScreen.fxml"));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(loginScene);
+        stage.setScene(new Scene(root));
         stage.setTitle("Larry June Dealership");
         stage.show();
     }
 
-   @FXML
+   
    //Handles submit button to check if Username and Password correct
    //If not print error into Terminal 
-private void handleSubmitLogin(ActionEvent event) throws IOException {
-    String username = usernameField.getText().trim();
-    String password = passwordField.getText().trim();
-    //Includes the inputed Username PW to the terminal 
-    System.out.println("Username entered: [" + username + "]");
-    System.out.println("Password entered: [" + password + "]");
-    
-    //If corret print 
-    if (username.equals(ManagerUsername) && password.equals(ManagerPassword)) {
-        System.out.println("Login matched");
-            //Load the Manager UI if correct PW and Username 
-        Parent root = FXMLLoader.load(
+   
+    @FXML
+    private void handleSubmitLogin(ActionEvent event) throws IOException{
+
+        String email = usernameField.getText().trim();
+        String password = passwordField.getText().trim();
+
+        if(email.isEmpty() || password.isEmpty()){
+            statusLabel.setText("Please enter email and Password");
+            return;
+        }
+        
+        if(email.equals(ManagerUsername) && password.equals(ManagerPassword)){
+            statusLabel.setText("Manager login Successful");
+
+            Parent root = FXMLLoader.load(
                 getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml"));
+            
+               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+               stage.setScene(new Scene(root, 1000, 900));
+                stage.setTitle("Manager UI");
+                stage.show();
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root, 1000, 900));
-        stage.setTitle("Manager UI");
-        stage.show();
+                return;
+        }
+        //Checks DB for account 
+        try{
+           ArrayList<Account> accounts = DBControl.fetchAccountsAt("email", email);
 
-    } else {
-        System.out.println("Invalid username or password");
+           if(accounts.isEmpty()){
+            statusLabel.setText("Invalid email");
+            return;
+           }
+
+           Account account = accounts.get(0);
+
+           if(account.getPassword().equals(password)){
+            statusLabel.setText("Login Successful");
+
+            //change later to Customer Ui when finished!!!
+            Parent root = FXMLLoader.load(getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml"));
+            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 1000, 900));
+            stage.setTitle("User Dashboard");
+            stage.show();
+           }else{
+            statusLabel.setText("Invalid password");
+           }
+
+           } catch(Exception e){
+            e.printStackTrace();
+            statusLabel.setText("Login Failed");
+           }
     }
-}
-    
+
+
+
+
+
+
+
+
     @FXML
     //handles the sign up button to go to the sign up screen 
     private void handleSignUp(ActionEvent event) throws IOException{

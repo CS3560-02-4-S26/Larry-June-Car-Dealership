@@ -892,21 +892,22 @@ public class DBControl {
      * @param n the account entry
      * @throws Exception Failure to add, prints "false"
      */
-    private static void InsertAccount(Account n) throws Exception {
-        if (mDBConnection == null) {
-            initDatabaseConnection();
-        }
+    public static void InsertAccount(Account n) throws Exception {
+       if(mDBConnection == null){
+        initDatabaseConnection();
+       }
 
-        String sql = "INSERT INTO Accounts (firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?)";
-        PreparedStatement stmt = mDBConnection.prepareStatement(sql);
-        stmt.setString(1, n.getFirstName());
-        stmt.setString(2, n.getLastName());
-        stmt.setString(3, n.getPhoneNum());
-        stmt.setString(4, n.getPassword());
-        stmt.setString(5, n.getEmail());
-        stmt.setString(6, n.getShippingAddress());
-        stmt.executeUpdate();
-    }
+            String sql = "INSERT INTO Accounts (firstName, lastName, phone, accountPassword, email, shippingAddress) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement stmt = mDBConnection.prepareStatement(sql);
+            stmt.setString(1, n.getFirstName());
+            stmt.setString(2, n.getLastName());
+            stmt.setString(3, n.getPhoneNum());
+            stmt.setString(4, n.getPassword()); 
+            stmt.setString(5, n.getEmail());
+            stmt.setString(6, n.getShippingAddress());
+            stmt.executeUpdate();
+        
+        }
 
     /**
      * Inserts a new entry to the Customer Database
