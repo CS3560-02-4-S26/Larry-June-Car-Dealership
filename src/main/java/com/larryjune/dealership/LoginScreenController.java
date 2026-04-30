@@ -25,11 +25,11 @@ public class LoginScreenController {
     @FXML
     //Handles the back button to return to main screen in Login Page
     private void handleBack(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(
+        Scene loginScene = FXMLLoader.load(
                 getClass().getResource("/com/larryjune/dealership/MainScreen.fxml"));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root, 1000, 900));
+        stage.setScene(loginScene);
         stage.setTitle("Larry June Dealership");
         stage.show();
     }
