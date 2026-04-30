@@ -42,10 +42,10 @@ private void handleBack(ActionEvent event) {
             getClass().getResource("/com/larryjune/dealership/MainScreen.fxml")
         );
 
-        Scene scene = loader.load();  // ✅ NOW matches your <Scene> root
+        Scene scene = loader.load();  
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);        // ✅ no new Scene() needed
+        stage.setScene(scene);       
         stage.setTitle("Larry June Dealership");
         stage.show();
 
