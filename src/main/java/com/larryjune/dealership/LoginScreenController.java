@@ -89,7 +89,7 @@ private void handleBack(ActionEvent event) {
            ArrayList<Account> accounts = DBControl.fetchAccountsAt("email", email);
 
            if(accounts.isEmpty()){
-            statusLabel.setText("Invalid email");
+            statusLabel.setText("Invalid email or Password");
             return;
            }
 
