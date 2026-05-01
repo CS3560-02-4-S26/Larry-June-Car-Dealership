@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 
 import com.larryjune.dealership.model.DBControl;
 import com.larryjune.dealership.model.Vehicle;
@@ -18,6 +19,15 @@ public class Add {
     private Button vehicle;
     @FXML
     private Button employee;
+
+    @FXML
+    private void goBack(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/com/larryjune/dealership/LoginScreen.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
 
     @FXML
     private void addVehicle(ActionEvent event) throws Exception {
