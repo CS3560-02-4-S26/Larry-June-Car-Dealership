@@ -1,12 +1,15 @@
 package com.larryjune.dealership;
 
 import java.io.IOException;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -22,6 +25,18 @@ public class Add {
     private Button vehicle;
     @FXML
     private Button employee;
+
+    public void initialize() {
+        // TODO: Fetch all vehicle items from the database
+        try {
+            List<Vehicle> vehicleData = DBControl.fetchVehicleData();
+            carItems.getChildren().add(new Label("Successfully fetched vehicles (TODO: UI)"));
+        } catch (Exception e) {
+            carItems.getChildren().add(
+                new Label("Failed to fetch vehicles (unimplemented)")
+            );
+        }
+    }
 
     @FXML
     private void goBack(ActionEvent event) throws IOException{
