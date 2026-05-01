@@ -31,15 +31,11 @@ public class Add {
 
     @FXML
     private void addVehicle(ActionEvent event) throws Exception {
-        Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/com/larryjune/dealership/Car_Maker.fxml")
         );
-        Parent root = loader.load();
 
-        Scene scene = new Scene(root, 1000, 900);
-        stage.setTitle("Larry June Dealership");
-        stage.setScene(scene);
+        Stage stage = loader.load();
         stage.show();
     }
 
