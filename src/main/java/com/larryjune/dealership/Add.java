@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
@@ -14,6 +15,8 @@ import com.larryjune.dealership.model.DBControl;
 import com.larryjune.dealership.model.Vehicle;
 
 public class Add {
+    @FXML
+    private FlowPane carItems;
 
     @FXML
     private Button vehicle;
