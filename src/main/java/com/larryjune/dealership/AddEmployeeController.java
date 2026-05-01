@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AddEmployeeController {
-
+    @FXML private Stage addEmployeeStage;
     @FXML private TextField accountId;
     @FXML private TextField firstName;
     @FXML private TextField lastName;
@@ -39,12 +39,10 @@ public class AddEmployeeController {
             String empPassword = password.getText();
             double empSalesPerMonth = Double.parseDouble(salesPerMonth.getText());
             DBControl.InsertEmployee(new Employee(id, empFirstName, empLastName, empEmail, empPhoneNumber, empShippingAddress, empSalesPerMonth, empPassword));
-            Parent root = FXMLLoader.load(
-                getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml"));
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1000, 900));
-            stage.setTitle("Manager UI");
+            Stage stage = FXMLLoader.load(
+                getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml")
+            );
             stage.show();
         }
         catch(Exception err)
@@ -56,22 +54,7 @@ public class AddEmployeeController {
     }
     @FXML
     private void exitAction(ActionEvent event) {
-        try
-        {
-            Parent root = FXMLLoader.load(
-                getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml"));
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1000, 900));
-            stage.setTitle("Manager UI");
-            stage.show();
-        }
-        catch(Exception err)
-        {
-            showError("Error","Error","One of your values is either null, or is inputed incorrectly");
-        }
-        
-
+        addEmployeeStage.close();
     }
     
     private void showError(String title, String header, String message) {
