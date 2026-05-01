@@ -98,12 +98,12 @@ private void handleBack(ActionEvent event) {
            if(account.getPassword().equals(password)){
             statusLabel.setText("Login Successful");
 
-            //change later to Customer Ui when finished!!!
-            Parent root = FXMLLoader.load(getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml"));
-            
+            CustomerSession.setLoggedIn(account);
+            Parent root = FXMLLoader.load(getClass().getResource("/com/larryjune/dealership/CustomerUi.fxml"));
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root, 1000, 900));
-            stage.setTitle("User Dashboard");
+            stage.setTitle("Customer Dashboard");
             stage.show();
            }else{
             statusLabel.setText("Invalid password");

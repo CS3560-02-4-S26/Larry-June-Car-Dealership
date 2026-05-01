@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="rootPane" prefHeight="620.0" prefWidth="480.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.VehicleDetailController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: black;">
+            <padding>
+                <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+            </padding>
+            <children>
+                <Label style="-fx-text-fill: white;" text="Vehicle details">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" onAction="#handleClose" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold;" text="Close">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: white;">
+            <content>
+                <VBox spacing="12.0" style="-fx-background-color: white;">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="16.0" />
+                    </padding>
+                    <children>
+                        <ImageView fx:id="detailImage" fitHeight="200.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@throbber.gif" />
+                            </image>
+                        </ImageView>
+                        <Label fx:id="detailHeadline" style="-fx-text-fill: #222222;" text="Year Make Model" wrapText="true">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="detailPrice" style="-fx-text-fill: #222222;" text="Price">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Separator />
+                        <VBox fx:id="detailRows" spacing="8.0" />
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

@@ -9,7 +9,7 @@
 
 <!--Controller Connection-->
 
-<VBox alignment="TOP_CENTER" maxWidth="Infinity" prefWidth="220.0" spacing="8.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 10; -fx-padding: 15;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.CarItemController">
+<VBox fx:id="rootBox" alignment="TOP_CENTER" maxWidth="Infinity" prefWidth="220.0" spacing="8.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 10; -fx-padding: 15;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.CarItemController">
    <children>
       <ImageView fx:id="carImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
