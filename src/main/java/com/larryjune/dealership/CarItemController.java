@@ -16,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 public class CarItemController {
     @FXML
@@ -35,71 +36,34 @@ public class CarItemController {
 
     public void setInfo(Vehicle vehicleInfo) {
         rootBox.setOnMouseClicked(e -> openVehicleDetail(vehicleInfo));
+
+        javafx.scene.image.Image carImg = null;
         // Load the vehicle image on a background thread and then
-        Thread imageLoadingThread = new Thread(
-            new Task<Boolean>() {
-                @Override
-                public Boolean call() {
-                    try {
-                        // Fetch the vehicle image
-                        Image vehicleImage = DBControl.fetchImagesAt(
-                            "vehicleID", Integer.toString(vehicleInfo.getVehicleID())
-                        ).getFirst();
+        try {
+            // Fetch the vehicle image URLs
+            Image vehicleImage = DBControl.fetchImagesAt(
+                "vehicleID", Integer.toString(vehicleInfo.getVehicleID())
+            ).getFirst();
 
-                        // If we reach this point, set the image back on the main UI thread
-                        Platform.runLater(
-                            new Task<Boolean>() {
-                                @Override
-                                public Boolean call() {
-                                    carImage.setImage(new javafx.scene.image.Image(vehicleImage.getImagePath()));
-                                    return true;
-                                }
-                            }
-                        );
-                    } catch (IndexOutOfBoundsException e) {
-                        // Generally OK, no available images to show
-                        System.err.println("No available vehicle images for vehicleID = " + vehicleInfo.getVehicleID());
-                        Platform.runLater(
-                            new Task<Void>() {
-                                @Override
-                                public Void call() {
-                                    carImage.setImage(
-                                        new javafx.scene.image.Image(
-                                            getClass().getResource("/com/larryjune/dealership/NoImageAvailable.png").toString()
-                                        )
-                                    );
-
-                                    return null;
-                                }
-                            }
-                        );
-                    } catch (Exception e) {
-                        // Some other error occurred, show the details.
-                        System.err.println("Failed to load image with vehicleID = " + vehicleInfo.getVehicleID());
-                        e.printStackTrace();
-                        Platform.runLater(
-                            new Task<Void>() {
-                                @Override
-                                public Void call() {
-                                    carImage.setImage(
-                                        new javafx.scene.image.Image(
-                                            getClass().getResource("/com/larryjune/dealership/NoImageAvailable.png").toString()
-                                        )
-                                    );
-
-                                    return null;
-                                }
-                            }
-                        );
-                        return false;
-                    }
-
-                    return true;
-                }
+            // Load the image
+            carImg = new javafx.scene.image.Image(vehicleImage.getImagePath(), true);
+        } catch (NoSuchElementException e) {
+            // Generally OK, no available images to show
+            System.out.println("No available vehicle images for vehicleID = " + vehicleInfo.getVehicleID());
+        } catch (Exception e) {
+            // Some other error occurred, show the details.
+            System.err.println("Failed to load image with vehicleID = " + vehicleInfo.getVehicleID());
+            e.printStackTrace();
+        } finally {
+            if (carImg == null) {
+                carImg = new javafx.scene.image.Image(
+                    getClass().getResource("/com/larryjune/dealership/NoImageAvailable.png").toString(),
+                    true
+                );
             }
-        );
 
-        imageLoadingThread.start();
+            carImage.setImage(carImg);
+        }
 
         carTitle.setText(
             vehicleInfo.getYear() + " " + vehicleInfo.getMake() + " " +
