@@ -36,12 +36,12 @@
          <center>
             <TableView fx:id="vehicleTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="makeModelColumn" prefWidth="126.0" text="Make and Model" />
-                <TableColumn fx:id="yearColumn" prefWidth="63.0" text="Year" />
-                  <TableColumn fx:id="vinColumn" minWidth="3.0" prefWidth="68.0" text="Vin" />
+                <TableColumn fx:id="makeModelColumn" prefWidth="151.0" text="Make and Model" />
+                <TableColumn fx:id="yearColumn" prefWidth="119.0" text="Year" />
+                  <TableColumn fx:id="vinColumn" minWidth="3.0" prefWidth="112.0" text="Vin" />
                   
-                  <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="82.0" text="Status" />
-                  <TableColumn fx:id="mileageColumn" prefWidth="195.0" text="Mileage" />
+                  <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="120.0" text="Status" />
+                  <TableColumn fx:id="mileageColumn" prefWidth="109.0" text="Mileage" />
               </columns>
             </TableView>
          </center>
