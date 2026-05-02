@@ -63,7 +63,7 @@ public class VehicleDetailController {
         javafx.scene.image.Image loadedImage = null;
         try {
             Image vehicleImage = DBControl.fetchImagesAt(
-                    "vehicleID", Integer.toString(vehicleId)
+                "vehicleID", Integer.toString(vehicleId)
             ).getFirst();
 
             loadedImage = new javafx.scene.image.Image(
