@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 20; -fx-spacing: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.TransactionController">
+   <children>
+      <Label prefHeight="89.0" prefWidth="560.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Process Transaction" />
+      <GridPane hgap="10.0" style="-fx-hgap: 10; -fx-vgap: 10;" vgap="10.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints fx:id="transactionVehicleIdField" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="17.0" prefWidth="65.0" style="-fx-alignment: CENTER_RIGHT;" text="Vehicle ID" GridPane.valignment="CENTER" />
+            <TextField fx:id="vehicleIDField" promptText="#####" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+            <Label prefHeight="17.0" prefWidth="35.0" style="-fx-alignment: CENTER_RIGHT;" text="VIN" GridPane.rowIndex="1" />
+            <TextField fx:id="vinField" promptText="Last 5 #" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="89.0" style="-fx-alignment: CENTER_RIGHT;" text="Make &amp; Model" GridPane.rowIndex="2" />
+            <TextField fx:id="makeModelField" promptText="Make, Model" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+            <Label prefHeight="17.0" prefWidth="72.0" style="-fx-alignment: CENTER_RIGHT;" text="Account #" GridPane.rowIndex="3" />
+            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER_RIGHT;" text=" Payment Amount" GridPane.rowIndex="4" />
+            <Label style="-fx-alignment: CENTER_RIGHT;" text="Confirm Amount" GridPane.rowIndex="5" />
+            <TextField fx:id="accountIdField" promptText="###-###-####" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+            <TextField fx:id="paymentAmountField" promptText="\$" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
+            <TextField fx:id="confirmAmountField" promptText="\$" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
+            <Label prefHeight="17.0" prefWidth="69.0" style="-fx-alignment: CENTER_RIGHT;" text="Start Date" GridPane.rowIndex="6" />
+            <Label prefHeight="17.0" prefWidth="66.0" style="-fx-alignment: CENTER_RIGHT;" text="End Date" GridPane.rowIndex="7" />
+            <DatePicker fx:id="startDatePicker" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
+            <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
+         </children>
+      </GridPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
+   </children>
+</VBox>
