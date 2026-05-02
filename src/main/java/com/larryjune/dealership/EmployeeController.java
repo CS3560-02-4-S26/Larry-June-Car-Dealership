@@ -54,6 +54,7 @@ public class EmployeeController implements Initializable {
 
 
     }
+    //fetches vehicle info from database
     private void loadVehicleData(){
         String sql = "SELECT * FROM vehicleData";
 
