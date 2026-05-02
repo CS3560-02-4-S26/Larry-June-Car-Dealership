@@ -16,7 +16,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-
 <Stage fx:id="addVehicleStage" title="Add Vehicle - Larry June Dealership" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.CarMakerController">
    <scene>
       <Scene>
@@ -118,7 +117,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: black;" text="How Many Previous Owners" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="11">
+                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: black;" text="Previous Owners" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="11">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
