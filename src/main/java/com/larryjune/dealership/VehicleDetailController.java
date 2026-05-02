@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
 public class VehicleDetailController {
 
@@ -59,30 +60,31 @@ public class VehicleDetailController {
     }
 
     private void loadDetailImage(int vehicleId) {
-        Thread t = new Thread(new Task<Boolean>() {
-            @Override
-            protected Boolean call() {
-                try {
-                    Image vehicleImage = DBControl.fetchImagesAt(
-                            "vehicleID", Integer.toString(vehicleId)
-                    ).getFirst();
-                    Platform.runLater(() ->
-                            detailImage.setImage(new javafx.scene.image.Image(vehicleImage.getImagePath())));
-                } catch (IndexOutOfBoundsException e) {
-                    Platform.runLater(() ->
-                            detailImage.setImage(new javafx.scene.image.Image(
-                                    getClass().getResource("/com/larryjune/dealership/NoImageAvailable.png").toString())));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Platform.runLater(() ->
-                            detailImage.setImage(new javafx.scene.image.Image(
-                                    getClass().getResource("/com/larryjune/dealership/NoImageAvailable.png").toString())));
-                }
-                return true;
+        javafx.scene.image.Image loadedImage = null;
+        try {
+            Image vehicleImage = DBControl.fetchImagesAt(
+                    "vehicleID", Integer.toString(vehicleId)
+            ).getFirst();
+
+            loadedImage = new javafx.scene.image.Image(
+                vehicleImage.getImagePath(),
+                true
+            );
+        } catch (NoSuchElementException e) {
+            // Ignore it
+        } catch (Exception e) {
+            System.err.println("Failed to load image for vehicle ID " + vehicleId);
+            e.printStackTrace();
+        } finally {
+            if (loadedImage == null) {
+                loadedImage = new javafx.scene.image.Image(
+                    getClass().getResource("/com/larryjune/dealership/NoImageAvailable.png").toString(),
+                    true
+                );
             }
-        });
-        t.setDaemon(true);
-        t.start();
+
+            detailImage.setImage(loadedImage);
+        }
     }
 
     @FXML
