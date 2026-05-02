@@ -15,6 +15,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+
 public class AddEmployeeController {
     @FXML private Stage addEmployeeStage;
     @FXML private TextField accountId;
@@ -30,6 +31,22 @@ public class AddEmployeeController {
     private void confirmAction(ActionEvent event) {
         try
         {
+            if(
+                accountId.getText().isBlank() ||
+                firstName.getText().isBlank() ||
+                lastName.getText().isBlank() ||
+                email.getText().isBlank() ||
+                phoneNumber.getText().isBlank() ||
+                shippingAddress.getText().isBlank() ||
+                salesPerMonth.getText().isBlank() ||
+                password.getText().isBlank() ){
+                    
+                    showError("Error", "Missing fields", "Please fill in all fields.");
+                    return;
+                }
+
+
+
             int id = Integer.parseInt(accountId.getText());
             String empFirstName = firstName.getText();
             String empLastName = lastName.getText();
@@ -47,6 +64,7 @@ public class AddEmployeeController {
         }
         catch(Exception err)
         {
+            err.printStackTrace();
             showError("Error","Error","One of your values is either null, or is inputed incorrectly");
         }
         

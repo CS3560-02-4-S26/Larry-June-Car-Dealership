@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import com.larryjune.dealership.model.Account;
 import com.larryjune.dealership.model.DBControl;
+import com.larryjune.dealership.model.Employee;
+
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -86,6 +88,29 @@ private void handleBack(ActionEvent event) {
         }
         //Checks DB for account 
         try{
+            ArrayList<Employee> employees = DBControl.fetchEmployeeAt("email", email,"=");
+            if(!employees.isEmpty()){
+                Employee employee = employees.get(0);
+
+                if(employee.getPassword().equals(password)){
+                    statusLabel.setText("Employee Login Successful");
+
+                    Parent root = FXMLLoader.load(getClass().getResource("/com/larryjune/dealership/EmployeePage.fxml"));
+
+                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                     stage.setScene(new Scene(root, 1000, 900));
+                     stage.setTitle("Employee DashBoard");
+                     stage.show();
+
+                     return;
+                }else{
+                    statusLabel.setText("Invalid Password");
+                    return;
+                }
+            }
+
+
+
            ArrayList<Account> accounts = DBControl.fetchAccountsAt("email", email);
 
            if(accounts.isEmpty()){

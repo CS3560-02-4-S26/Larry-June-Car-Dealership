@@ -126,6 +126,10 @@ public class Vehicle {
         this.previousOwnerCount = previousOwnerCount;
     }
 
+    public String getMakeModel(){
+        return make + " " + model;
+    }
+
     //Test Function
     @Override
     public String toString(){
