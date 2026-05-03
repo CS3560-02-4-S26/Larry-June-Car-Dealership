@@ -36,32 +36,28 @@ public class LoginScreenController {
         statusLabel.setText(message);
     }
 
-    
-@FXML
-private void handleBack(ActionEvent event) {
-    try {
-        FXMLLoader loader = new FXMLLoader(
-            getClass().getResource("/com/larryjune/dealership/MainScreen.fxml")
-        );
+    @FXML
+    private void handleBack(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/com/larryjune/dealership/MainScreen.fxml")
+            );
 
-        Scene scene = loader.load();  
+            Scene scene = loader.load();
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);       
-        stage.setTitle("Larry June Dealership");
-        stage.show();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Larry June Dealership");
+            stage.show();
 
-    } catch (Exception e) {
-        e.printStackTrace();
-        statusLabel.setText("Could not open main screen: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusLabel.setText("Could not open main screen: " + e.getMessage());
+        }
     }
-}
 
-
-   
-   //Handles submit button to check if Username and Password correct
-   //If not print error into Terminal 
-   
+   // Handles submit button to check if Username and Password correct
+   // If not print error into Terminal
     @FXML
     private void handleSubmitLogin(ActionEvent event) throws IOException{
 
