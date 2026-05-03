@@ -570,25 +570,20 @@ public class CustomerUiController {
                 appointmentStatusLabel.setText("No staff accounts available to assign. Try again later.");
                 return;
             }
-            int employeeId = employees.get(0).getAccountID();
-            Date sqlDate = Date.valueOf(appointmentDatePicker.getValue());
 
-            try (Connection conn = DBConnection.connect()) {
-                String sql = "INSERT INTO Appointment (employeeAccountID, customerAccountID, apointmentDate, typeOfAppointment) VALUES (?, ?, ?, ?)";
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setInt(1, employeeId);
-                stmt.setInt(2, session.getAccountID());
-                stmt.setDate(3, sqlDate);
-                stmt.setString(4, type);
-                stmt.executeUpdate();
-            }
+            Date sqlDate = Date.valueOf(appointmentDatePicker.getValue());
+            Appointment newAppointment = new Appointment(
+                employees.getFirst(), (Customer) CustomerSession.getLoggedIn(), Date.valueOf(appointmentDatePicker.getValue()), type
+            );
+
+            DBControl.InsertAppointment(newAppointment);
 
             appointmentStatusLabel.setText("Appointment booked for " + sqlDate + ".");
             appointmentDatePicker.setValue(null);
             refreshAppointmentsList();
         } catch (Exception e) {
             e.printStackTrace();
-            appointmentStatusLabel.setText("Could not save appointment. Check your database connection.");
+            appointmentStatusLabel.setText("Could not save appointment.");
         }
     }
 
