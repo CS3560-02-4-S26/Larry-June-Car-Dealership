@@ -41,13 +41,7 @@
                               </VBox>
 
                               <Region HBox.hgrow="ALWAYS" />
-
-                              <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Login">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#handleVehicles" prefHeight="35.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Vehicles">
+                              <Button mnemonicParsing="false" onAction="#handleVehicles" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Vehicles">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -55,7 +49,16 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: #333333; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;" text="Information" />
+                              <Button mnemonicParsing="false" style="-fx-background-color: #333333; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;" text="Information">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+      
+                                          <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Login">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                            </children>
                         </HBox>
 
@@ -78,7 +81,7 @@
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label wrapText="true" text="Larry June Dealership helps customers find reliable cars, trucks, and family vehicles at fair prices. Our goal is to make every visit simple, honest, and stress free." />
+                                    <Label text="Larry June Dealership helps customers find reliable cars, trucks, and family vehicles at fair prices. Our goal is to make every visit simple, honest, and stress free." wrapText="true" />
                                  </children>
                               </VBox>
 
@@ -91,7 +94,7 @@
                                     </Label>
                                     <Label text="Phone: (555) 123-4567" />
                                     <Label text="Email: sales@larryjune.com" />
-                                    <Label wrapText="true" text="Address: 100 Auto Drive, Atlanta, GA" />
+                                    <Label text="Address: 100 Auto Drive, Atlanta, GA" wrapText="true" />
                                  </children>
                               </VBox>
 

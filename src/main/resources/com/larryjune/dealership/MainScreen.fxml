@@ -48,19 +48,25 @@
                               </VBox>
             
                               <Region HBox.hgrow="ALWAYS" />
-            
-                              <!--Buttons-->
-                              <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Login">
+                              <Button mnemonicParsing="false" style="-fx-background-color: #333333; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Vehicles">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Vehicles">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#handleInformation" prefHeight="35.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;" text="Information" />                           
+                              <Button mnemonicParsing="false" onAction="#handleInformation" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;" text="Information">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+            
+                              <!--Buttons-->
+                              <Button mnemonicParsing="false" onAction="#handleLogin" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Login">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>                           
                               </children>
                         </HBox>
             
