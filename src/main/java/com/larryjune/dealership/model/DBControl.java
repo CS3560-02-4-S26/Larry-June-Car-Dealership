@@ -886,7 +886,7 @@ public class DBControl {
                     rs.getInt("appointmentID"),
                     fetchEmployeeAt("accountID",""+eid,"=").get(0),
                     fetchCustomerAt("accountID",""+cid,"=").get(0),
-                    rs.getDate("apointmentDate"),
+                    rs.getDate("appointmentDate"),
                     rs.getString("typeOfAppointment")
                     ));
         }
