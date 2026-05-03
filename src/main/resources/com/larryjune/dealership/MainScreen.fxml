@@ -69,17 +69,16 @@
                               </Button>                           
                               </children>
                         </HBox>
-            
-                        <!-- Title -->
-                        <HBox alignment="CENTER">
+                        <VBox alignment="CENTER">
                            <children>
                               <Label style="-fx-text-fill: #222222;" text="Featured Vehicles" textAlignment="CENTER">
                                  <font>
                                     <Font name="Helvetica Bold" size="24.0" />
                                  </font>
                               </Label>
+                              <Label text="For all vehicles, please sign in." />
                            </children>
-                        </HBox>
+                        </VBox>
 
                         <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true">
                            <content>
