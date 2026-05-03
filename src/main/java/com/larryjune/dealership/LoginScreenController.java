@@ -86,6 +86,7 @@ private void handleBack(ActionEvent event) {
 
                 return;
         }
+        
         //Checks DB for account 
         try{
             ArrayList<Employee> employees = DBControl.fetchEmployeeAt("email", email,"=");
