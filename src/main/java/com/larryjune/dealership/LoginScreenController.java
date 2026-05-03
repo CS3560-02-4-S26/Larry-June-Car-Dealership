@@ -27,10 +27,6 @@ public class LoginScreenController {
 
      @FXML
     private PasswordField passwordField;
-    
-    //Hardcoded credentials for the Manager PW and Username
-    private static final String ManagerUsername = "YunoMiles";
-    private static final String ManagerPassword = "676921";
 
     public void setStatusMessage(String message){
         statusLabel.setText(message);
@@ -59,28 +55,13 @@ public class LoginScreenController {
    // Handles submit button to check if Username and Password correct
    // If not print error into Terminal
     @FXML
-    private void handleSubmitLogin(ActionEvent event) throws IOException{
-
+    private void handleSubmitLogin(ActionEvent event) {
         String email = usernameField.getText().trim();
         String password = passwordField.getText().trim();
 
         if(email.isEmpty() || password.isEmpty()){
             statusLabel.setText("Please enter email and Password");
             return;
-        }
-        
-        if(email.equals(ManagerUsername) && password.equals(ManagerPassword)){
-            statusLabel.setText("Manager login Successful");
-
-            Parent root = FXMLLoader.load(
-                getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml"));
-            
-               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-               stage.setScene(new Scene(root, 1000, 900));
-                stage.setTitle("Manager UI");
-                stage.show();
-
-                return;
         }
 
         try {
