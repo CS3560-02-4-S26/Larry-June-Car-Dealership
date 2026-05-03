@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Scene xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.InformationController">
+   <root>
+      <VBox alignment="TOP_CENTER">
+         <children>
+            <AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox fillWidth="true" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="111.0" spacing="15.0" style="-fx-background-color: black; -fx-padding: 10 20 10 20;">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@logo.png" />
+                                 </image>
+                              </ImageView>
+
+                              <VBox alignment="CENTER_LEFT" spacing="4.0">
+                                 <children>
+                                    <Label style="-fx-text-fill: white;" text="Larry June Dealership" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Where the Wheels Take You" />
+                                 </children>
+                              </VBox>
+
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" onAction="#handleVehicles" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Vehicles">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button mnemonicParsing="false" style="-fx-background-color: #333333; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;" text="Information">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+      
+                                          <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Login">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label style="-fx-text-fill: #222222;" text="Information" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Helvetica Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+
+                        <HBox alignment="CENTER" spacing="25.0">
+                           <children>
+                              <VBox prefHeight="230.0" prefWidth="280.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 10; -fx-padding: 18; -fx-spacing: 10;">
+                                 <children>
+                                    <Label style="-fx-text-fill: #222222;" text="About Us">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Larry June Dealership helps customers find reliable cars, trucks, and family vehicles at fair prices. Our goal is to make every visit simple, honest, and stress free." wrapText="true" />
+                                 </children>
+                              </VBox>
+
+                              <VBox prefHeight="230.0" prefWidth="280.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 10; -fx-padding: 18; -fx-spacing: 10;">
+                                 <children>
+                                    <Label style="-fx-text-fill: #222222;" text="Contact Us">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Phone: (555) 123-4567" />
+                                    <Label text="Email: sales@larryjune.com" />
+                                    <Label text="Address: 100 Auto Drive, Atlanta, GA" wrapText="true" />
+                                 </children>
+                              </VBox>
+
+                              <VBox prefHeight="230.0" prefWidth="280.0" style="-fx-background-color: #f5f5f5; -fx-background-radius: 10; -fx-padding: 18; -fx-spacing: 10;">
+                                 <children>
+                                    <Label style="-fx-text-fill: #222222;" text="Business Hours">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Monday - Friday: 9 AM - 7 PM" />
+                                    <Label text="Saturday: 10 AM - 5 PM" />
+                                    <Label text="Sunday: Closed" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </root>
+</Scene>

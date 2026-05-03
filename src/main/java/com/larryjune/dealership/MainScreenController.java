@@ -29,8 +29,7 @@ public class MainScreenController {
         try {
             // TODO: use DBControl.fetchVehicleDataAt() to make a more filtered
             featuredVehicleData = DBControl.fetchVehicleDataAt(
-                "mileage", "50000", "<"
-            );
+                    "mileage", "50000", "<");
         } catch (Exception e) {
             System.err.println("Featured vehicles: Failed to fetch vehicle data!!!!");
             e.printStackTrace();
@@ -54,8 +53,7 @@ public class MainScreenController {
         for (Vehicle vehicle : featuredVehicleData) {
             try {
                 carItemLoader = new FXMLLoader(
-                        getClass().getResource("/com/larryjune/dealership/CarItem.fxml")
-                );
+                        getClass().getResource("/com/larryjune/dealership/CarItem.fxml"));
 
                 carItem = carItemLoader.load();
                 controller = carItemLoader.getController();
@@ -69,15 +67,25 @@ public class MainScreenController {
         }
     }
 
-    //Handles the login button in Main Screen
+    // Handles the login button in Main Screen
     public void handleLogin(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(
-            getClass().getResource("/com/larryjune/dealership/LoginScreen.fxml")
-        );
+                getClass().getResource("/com/larryjune/dealership/LoginScreen.fxml"));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root, 1000, 900));
         stage.setTitle("Login");
+        stage.show();
+    }
+
+    // Handles the Information button in Main Screen
+    public void handleInformation(ActionEvent event) throws IOException {
+        Scene informationScene = FXMLLoader.load(
+                getClass().getResource("/com/larryjune/dealership/InformationScreen.fxml"));
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(informationScene);
+        stage.setTitle("Information");
         stage.show();
     }
 }
