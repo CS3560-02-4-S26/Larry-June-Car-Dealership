@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Scene xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.InformationController">
+<Scene xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.InformationController">
    <root>
       <VBox alignment="TOP_CENTER">
          <children>
@@ -81,7 +81,7 @@
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Larry June Dealership helps customers find reliable cars, trucks, and family vehicles at fair prices. Our goal is to make every visit simple, honest, and stress free." wrapText="true" />
+                                    <Label text="Larry June Dealership is committed to delivering reliable vehicles and a seamless buying experience. Our goal is to provide accurate, real-time inventory, transparent pricing, and dependable customer service. We strive to make every interaction efficient, trustworthy, and stress-free while helping customers find the right vehicle with confidence." wrapText="true" />
                                  </children>
                               </VBox>
 
@@ -94,7 +94,7 @@
                                     </Label>
                                     <Label text="Phone: (555) 123-4567" />
                                     <Label text="Email: sales@larryjune.com" />
-                                    <Label text="Address: 100 Auto Drive, Atlanta, GA" wrapText="true" />
+                                    <Label prefHeight="17.0" prefWidth="224.0" text="Address: 100 Auto Drive, Pomona CA" wrapText="true" />
                                  </children>
                               </VBox>
 
