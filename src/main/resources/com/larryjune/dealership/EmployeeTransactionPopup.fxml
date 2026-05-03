@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 20; -fx-spacing: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.TransactionController">
    <children>
       <Label prefHeight="89.0" prefWidth="560.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="Process Transaction" />
