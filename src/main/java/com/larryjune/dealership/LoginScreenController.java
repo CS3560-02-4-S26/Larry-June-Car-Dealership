@@ -2,9 +2,9 @@ package com.larryjune.dealership;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import com.larryjune.dealership.model.Account;
-import com.larryjune.dealership.model.DBControl;
-import com.larryjune.dealership.model.Employee;
+import java.util.NoSuchElementException;
+
+import com.larryjune.dealership.model.*;
 
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
@@ -86,67 +86,88 @@ private void handleBack(ActionEvent event) {
 
                 return;
         }
-        
-        //Checks DB for account 
-        try{
-            ArrayList<Employee> employees = DBControl.fetchEmployeeAt("email", email,"=");
-            if(!employees.isEmpty()){
-                Employee employee = employees.get(0);
 
-                if(employee.getPassword().equals(password)){
-                    statusLabel.setText("Employee Login Successful");
-
-                    Parent root = FXMLLoader.load(getClass().getResource("/com/larryjune/dealership/EmployeePage.fxml"));
-
-                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                     stage.setScene(new Scene(root, 1000, 900));
-                     stage.setTitle("Employee DashBoard");
-                     stage.show();
-
-                     return;
-                }else{
-                    statusLabel.setText("Invalid Password");
-                    return;
-                }
+        try {
+            // First, check if the account exists
+            ArrayList<Account> matchingAccounts = DBControl.fetchAccountsAt("email", email);
+            if (matchingAccounts.isEmpty()) {
+                statusLabel.setText("Account not found.");
+                return;
             }
 
+            // Next, check the account's password
+            Account account = matchingAccounts.getFirst();
+            if (!passwordField.getText().equals(account.getPassword())) {
+                statusLabel.setText("Invalid username or password.");
+                return;
+            }
 
+            // Then, check if a customer account exists
+            String accountId = Integer.toString(account.getAccountID());
+            ArrayList<Customer> matchingCustomerAccounts = DBControl.fetchCustomerAt(
+                "customerAccountID", accountId, "="
+            );
 
-           ArrayList<Account> accounts = DBControl.fetchAccountsAt("email", email);
+            if (!matchingCustomerAccounts.isEmpty()) {
+                statusLabel.setText("Login Successful");
 
-           if(accounts.isEmpty()){
-            statusLabel.setText("Invalid email or Password");
-            return;
-           }
+                CustomerSession.setLoggedIn(matchingAccounts.getFirst());
+                Parent root = FXMLLoader.load(getClass().getResource("/com/larryjune/dealership/CustomerUi.fxml"));
 
-           Account account = accounts.get(0);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root, 1000, 900));
+                stage.setTitle("Customer Dashboard");
+                stage.show();
+            }
 
-           if(account.getPassword().equals(password)){
-            statusLabel.setText("Login Successful");
+            // Otherwise, check if they're an employee
+            ArrayList<Employee> matchingEmployeeAccounts = DBControl.fetchEmployeeAt(
+                "employeeAccountID", accountId, "="
+            );
 
-            CustomerSession.setLoggedIn(account);
-            Parent root = FXMLLoader.load(getClass().getResource("/com/larryjune/dealership/CustomerUi.fxml"));
+            // Then, check if they're a manager. (This must be done before we check if they're an employee because
+            // managers *are* employees).
+            ArrayList<Manager> matchingManagerAccounts = DBControl.fetchManagersAt(
+                    "managerAccountID", accountId, "="
+            );
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1000, 900));
-            stage.setTitle("Customer Dashboard");
-            stage.show();
-           }else{
-            statusLabel.setText("Invalid password");
-           }
+            if (!matchingManagerAccounts.isEmpty()) {
+                System.out.println("Logging in manager...");
+                Parent root = FXMLLoader.load(
+                        getClass().getResource("/com/larryjune/dealership/ManagerUi.fxml")
+                );
 
-           } catch(Exception e){
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root, 1000, 900));
+                stage.setTitle("Manager UI");
+                stage.show();
+
+                return;
+            }
+
+            // Finally, check if they're an employee
+            if (!matchingEmployeeAccounts.isEmpty()) {
+                statusLabel.setText("Employee Login Successful");
+
+                Parent root = FXMLLoader.load(getClass().getResource("/com/larryjune/dealership/EmployeePage.fxml"));
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root, 1000, 900));
+                stage.setTitle("Employee DashBoard");
+                stage.show();
+
+                return;
+            }
+
+            // If all else fails (we shouldn't get here), set the label text
+            statusLabel.setText("Account doesn't exist.");
+        } catch (NoSuchElementException e) {
+            statusLabel.setText("That account does not exist.");
+        } catch (Exception e) {
             e.printStackTrace();
-            statusLabel.setText("Login Failed");
-           }
+            statusLabel.setText("Error while logging in.");
+        }
     }
-
-
-
-
-
-
-
 
     @FXML
     //handles the sign up button to go to the sign up screen 
