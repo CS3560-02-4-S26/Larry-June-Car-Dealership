@@ -60,8 +60,8 @@
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="35.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;" text="Information" />
-                           </children>
+                              <Button mnemonicParsing="false" onAction="#handleInformation" prefHeight="35.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-radius: 5;" text="Information" />                           
+                              </children>
                         </HBox>
             
                         <!-- Title -->
