@@ -9,7 +9,7 @@ public class Appointment {
     private Date appointmentDate;
     private String typeOfAppointment;
 
-    Appointment(int appointmentID, Employee employeeAccountID, Customer customerAccountID, Date appointmentDate, String typeOfAppointment) {
+    public Appointment(int appointmentID, Employee employeeAccountID, Customer customerAccountID, Date appointmentDate, String typeOfAppointment) {
         this.appointmentID = appointmentID;
         this.employeeAccountID = employeeAccountID;
         this.customerAccountID = customerAccountID;
@@ -17,6 +17,12 @@ public class Appointment {
         this.typeOfAppointment = typeOfAppointment;
     }
 
+    public Appointment(Employee employeeAccountID, Customer customerAccountID, Date appointmentDate, String typeOfAppointment) {
+        this.employeeAccountID = employeeAccountID;
+        this.customerAccountID = customerAccountID;
+        this.appointmentDate = appointmentDate;
+        this.typeOfAppointment = typeOfAppointment;
+    }
 
     public Employee getEmployeeAccountID() {
         return this.employeeAccountID;
