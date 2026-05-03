@@ -1,12 +1,6 @@
 package com.larryjune.dealership;
 
-import com.larryjune.dealership.model.Account;
-import com.larryjune.dealership.model.Accident;
-import com.larryjune.dealership.model.DBConnection;
-import com.larryjune.dealership.model.DBControl;
-import com.larryjune.dealership.model.Employee;
-import com.larryjune.dealership.model.Sale;
-import com.larryjune.dealership.model.Vehicle;
+import com.larryjune.dealership.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -604,15 +598,13 @@ public class CustomerUiController {
         if (session == null) {
             return;
         }
-        try (Connection conn = DBConnection.connect()) {
-            String sql = "SELECT apointmentDate, typeOfAppointment, employeeAccountID FROM Appointment WHERE customerAccountID = ? ORDER BY apointmentDate";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, session.getAccountID());
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                String line = rs.getDate("apointmentDate")
-                        + " · " + rs.getString("typeOfAppointment")
-                        + " · Staff #" + rs.getInt("employeeAccountID");
+
+        try {
+            ArrayList<Appointment> appointments = DBControl.fetchAppointments();
+            for (Appointment appointment : appointments) {
+                String line = appointment.getAppointmentDate().toString()
+                        + " · " + appointment.getTypeOfAppointment()
+                        + " · Staff #" + appointment.getEmployeeAccountID().getAccountID();
                 appointmentsListView.getItems().add(line);
             }
             if (appointmentsListView.getItems().isEmpty()) {
