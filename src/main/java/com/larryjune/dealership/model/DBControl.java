@@ -831,7 +831,6 @@ public class DBControl {
             case "model":
             case "color":
             case "bodyStyle":
-            //DO NOT USE CAR STATUS RIGHT NOW IM GONNA FIX THE DATABASES SOON
             case "carStatus":
                 stmt.setString(1, val);
                 break;
@@ -858,6 +857,87 @@ public class DBControl {
                     rs1.getInt("mileage"),
                     rs1.getString("carStatus"),
                     rs1.getInt("prevOwnerCount")));
+        }
+
+        return results;
+    }
+
+    // NOTE: Dates are always in the format of yyyy-mm-dd
+    /**
+     * Fetches all entries from the Accidents Database
+     * @return An ArrayList of Accident Objects from the database
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Appointment> fetchAppointments() throws Exception {
+        ArrayList<Appointment> results = new ArrayList<>();
+        if (mDBConnection == null) {
+            initDatabaseConnection();
+        }
+
+        String sql = "SELECT * FROM Appointment";
+        PreparedStatement stmt = mDBConnection.prepareStatement(sql);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            int eid = rs.getInt("employeeAccountID");
+            int cid = rs.getInt("customerAccountID");
+            results.add(new Appointment(
+                    rs.getInt("appointmentID"),
+                    fetchEmployeeAt("accountID",""+eid,"=").get(0),
+                    fetchCustomerAt("accountID",""+cid,"=").get(0),
+                    rs.getDate("apointmentDate"),
+                    rs.getString("typeOfAppointment")
+                    ));
+        }
+
+        return results;
+    }
+
+    /**
+     * Fetches entries that match a specific criteria
+     * @param column the type of data you want to fetch
+     * @param val the criteria that you want
+     * @param sign the comparitor that will match the data with val
+     * @return An ArrayList of Accident Objects from the database 
+     * @throws Exception Failure to fetch
+     */
+    public static ArrayList<Appointment> fetchAppointmentssAt(String column, String val, String sign) throws Exception {
+        ArrayList<Appointment> results = new ArrayList<>();
+        if (mDBConnection == null) {
+            initDatabaseConnection();
+        }
+
+        String sql = "SELECT * FROM Appointment WHERE " + column + " "+ sign +" ?";
+        PreparedStatement stmt = mDBConnection.prepareStatement(sql);
+        switch (column) {
+            case "appointmentID":
+            case "employeeAccountID":
+            case "customerAccountID":
+                stmt.setInt(1, Integer.parseInt(val));
+                break;
+            case "apointmentDate":
+                stmt.setDate(1, Date.valueOf(val));
+                break;
+            case "typeOfAppointment":
+                stmt.setString(1, val);
+                break;
+            default:
+                stmt.setInt(1, Integer.parseInt(val));
+                break;
+        }
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            int eid = rs.getInt("employeeAccountID");
+            int cid = rs.getInt("customerAccountID");
+            results.add(new Appointment(
+                    rs.getInt("appointmentID"),
+                    fetchEmployeeAt("accountID",""+eid,"=").get(0),
+                    fetchCustomerAt("accountID",""+cid,"=").get(0),
+                    rs.getDate("apointmentDate"),
+                    rs.getString("typeOfAppointment")
+                    ));
         }
 
         return results;
@@ -954,7 +1034,8 @@ public class DBControl {
             initDatabaseConnection();
         }
 
-        InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getPassword()));
+        InsertAccount(new Account(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(),
+                                     n.getPhoneNum(), n.getShippingAddress(), n.getPassword()));
         ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
         String sql = "INSERT INTO EmployeeAccount (employeeAccountID, totalSales) VALUES (?, ?)";
         PreparedStatement stmt = mDBConnection.prepareStatement(sql);
@@ -991,7 +1072,8 @@ public class DBControl {
             initDatabaseConnection();
         }
 
-        InsertEmployee(new Employee(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), n.getPhoneNum(), n.getShippingAddress(), n.getTotalSalesPerMonth(), n.getPassword()));
+        InsertEmployee(new Employee(n.getAccountID(), n.getFirstName(), n.getLastName(), n.getEmail(), 
+                            n.getPhoneNum(), n.getShippingAddress(), n.getTotalSalesPerMonth(), n.getPassword()));
         ArrayList<Account> temp = fetchAccountsAt("email", n.getEmail());
         String sql = "INSERT INTO ManagerAccount (managerAccountID, managerstatus) VALUES (?, ?)";
         PreparedStatement stmt = mDBConnection.prepareStatement(sql);
@@ -999,6 +1081,7 @@ public class DBControl {
         stmt.setString(2, n.getStatus());
         stmt.executeUpdate();
     }
+
 
     /**
      * Inserts a new entry to the Sale Database
@@ -1057,6 +1140,28 @@ public class DBControl {
         stmt.setInt(11, n.getPreviousOwnerCount());
         stmt.executeUpdate();
     }
+
+    /**
+     * Inserts a new entry to the Account Database
+     * NOTE: PLEASE DO NOT USE INSERTACCOUNT, USE INSERTCUSTOMER, INSERTMANAGER, and INSERTEMPLOYEE
+     *       THOSE METHODS ALREADY RECURSIVELY CALL THIS METHOD, and also its more proper if we do 
+     *       it that way
+     * @param n the account entry
+     * @throws Exception Failure to add, prints "false"
+     */
+    public static void InsertAppointment(Appointment n) throws Exception {
+       if(mDBConnection == null){
+        initDatabaseConnection();
+       }
+            String sql = "INSERT INTO Appointment (employeeAccountID, customerAccountID, apointmentDate, typeOfAppointment) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmt = mDBConnection.prepareStatement(sql);
+            stmt.setInt(1, n.getEmployeeAccountID().getAccountID());
+            stmt.setInt(2, n.getCustomerAccountID().getAccountID());
+            stmt.setDate(3, n.getAppointmentDate());
+            stmt.setString(4, n.getTypeOfAppointment()); 
+            stmt.executeUpdate();
+        
+        }
 
     //Update Methods
     /**
@@ -1348,6 +1453,40 @@ public class DBControl {
                 break;
             case "isUsed":
                 stmt.setBoolean(1, val.equals("true"));
+                break;
+        }
+
+        stmt.setInt(2, id);
+        stmt.executeUpdate();
+    }
+
+    /**
+     * Updates vehicle data entries in the table
+     * @param id the id
+     * @param column column
+     * @param val value
+     * @throws Exception An issue with the database connection occurred.
+     */
+    public static void updateAppointment(int id, String column, String val) throws Exception {
+        if (mDBConnection == null) {
+            initDatabaseConnection();
+        }
+
+        String sql = "UPDATE Appointment SET " + column+ " = ? WHERE appointmentID = ?";
+        PreparedStatement stmt = mDBConnection.prepareStatement(sql);
+        switch (column) {
+            case "employeeAccountID":
+            case "customerAccountID":
+                stmt.setInt(1, Integer.parseInt(val));
+                break;
+            case "apointmentDate":
+                stmt.setDate(1, Date.valueOf(val));
+                break;
+            case "typeOfAppointment":
+                stmt.setString(1, val);
+                break;
+            default:
+                stmt.setInt(1, Integer.parseInt(val));
                 break;
         }
 

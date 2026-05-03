@@ -1,6 +1,7 @@
 USE larryjunedatabase;
 
 CREATE TABLE Appointment(
+	appointmentID INT PRIMARY KEY AUTO_INCREMENT,
 	employeeAccountID INT,
     customerAccountID INT,
     apointmentDate DATE,

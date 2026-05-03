@@ -1,39 +1,44 @@
 package com.larryjune.dealership.model;
 
+import java.sql.Date;
+
 public class Appointment {
-    private int employeeAccountID;
-    private int customerAccountID;
-    private String appointmentDate;
+    private int appointmentID;
+    private Employee employeeAccountID;
+    private Customer customerAccountID;
+    private Date appointmentDate;
     private String typeOfAppointment;
 
-    private Appointment(int employeeAccountID, int customerAccountID, String appointmentDate, String typeOfAppointment) {
+    Appointment(int appointmentID, Employee employeeAccountID, Customer customerAccountID, Date appointmentDate, String typeOfAppointment) {
+        this.appointmentID = appointmentID;
         this.employeeAccountID = employeeAccountID;
         this.customerAccountID = customerAccountID;
         this.appointmentDate = appointmentDate;
         this.typeOfAppointment = typeOfAppointment;
     }
 
-    public int getEmployeeAccountID() {
+
+    public Employee getEmployeeAccountID() {
         return this.employeeAccountID;
     }
 
-    public void setEmployeeAccountID(int newEmployeeId) {
+    public void setEmployeeAccountID(Employee newEmployeeId) {
         this.employeeAccountID = newEmployeeId;
     }
 
-    public int getCustomerAccountID() {
+    public Customer getCustomerAccountID() {
         return this.customerAccountID;
     }
 
-    public void setCustomerAccountID(int newCustomerId) {
+    public void setCustomerAccountID(Customer newCustomerId) {
         this.customerAccountID = newCustomerId;
     }
 
-    public String getAppointmentDate() {
+    public Date getAppointmentDate() {
         return this.appointmentDate;
     }
 
-    public void setAppointmentDate(String newDate) {
+    public void setAppointmentDate(Date newDate) {
         this.appointmentDate = newDate;
     }
 
@@ -43,5 +48,17 @@ public class Appointment {
 
     public void setTypeOfAppointment(String newType) {
         this.typeOfAppointment = newType;
+    }
+
+
+
+    public int getAppointmentID() {
+        return appointmentID;
+    }
+
+
+
+    public void setAppointmentID(int appointmentID) {
+        this.appointmentID = appointmentID;
     }
 }
