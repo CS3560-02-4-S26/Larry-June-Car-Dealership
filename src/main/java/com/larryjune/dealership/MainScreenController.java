@@ -80,13 +80,12 @@ public class MainScreenController {
 
     // Handles the Information button in Main Screen
     public void handleInformation(ActionEvent event) throws IOException {
-    Parent root = FXMLLoader.load(
-            getClass().getResource("/com/larryjune/dealership/InformationScreen.fxml"));
+        Scene informationScene = FXMLLoader.load(
+                getClass().getResource("/com/larryjune/dealership/InformationScreen.fxml"));
 
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    stage.setScene(new Scene(root, 1000, 900));
-    stage.setTitle("Information");
-    stage.show();
-    }
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(informationScene);
+        stage.setTitle("Information");
+        stage.show();
     }
 }
