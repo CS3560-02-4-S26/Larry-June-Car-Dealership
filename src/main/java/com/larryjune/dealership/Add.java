@@ -53,7 +53,7 @@ public class Add {
                 Label makeModel = new Label(vehicle.getMake() + " " + vehicle.getModel());
                 Label modelYear = new Label(Integer.toString(vehicle.getYear()));
                 Label plate = new Label(vehicle.getVinNumber());
-                Label status = new Label(vehicle.getCarStatus());
+                Label status = new Label(MiscUtilities.mapCarStatus(vehicle.getCarStatus()));
                 Label mileage = new Label(Integer.toString(vehicle.getMileage()));
 
                 carItems.add(makeModel, 1, i);

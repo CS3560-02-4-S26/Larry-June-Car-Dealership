@@ -3,8 +3,6 @@ package com.larryjune.dealership;
 import com.larryjune.dealership.model.DBControl;
 import com.larryjune.dealership.model.Image;
 import com.larryjune.dealership.model.Vehicle;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -71,7 +69,7 @@ public class CarItemController {
         );
 
         carMsrp.setText("MSRP: $" + vehicleInfo.getPrice());
-        carDescription.setText(vehicleInfo.getCarStatus());
+        carDescription.setText(MiscUtilities.mapCarStatus(vehicleInfo.getCarStatus()));
     }
 
     private void openVehicleDetail(Vehicle vehicle) {

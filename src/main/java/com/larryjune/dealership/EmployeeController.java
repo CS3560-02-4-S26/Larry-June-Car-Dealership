@@ -2,8 +2,9 @@ package com.larryjune.dealership;
 
 import com.larryjune.dealership.model.DBControl;
 import com.larryjune.dealership.model.Vehicle;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,7 +51,9 @@ public class EmployeeController implements Initializable {
         makeModelColumn.setCellValueFactory(new PropertyValueFactory<>("makeModel"));
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
         vinColumn.setCellValueFactory(new PropertyValueFactory<>("vinNumber"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("carStatus"));
+        statusColumn.setCellValueFactory(
+            p -> new ReadOnlyObjectWrapper<   >(MiscUtilities.mapCarStatus(p.getValue().getCarStatus()))
+        );
         mileageColumn.setCellValueFactory(new PropertyValueFactory<>("mileage"));
 
         styleStatusColumn();
@@ -67,23 +71,7 @@ public class EmployeeController implements Initializable {
         }
     }
 
-    private String mapCarStatus(String dbStatus){
-        switch(dbStatus){
-            case "1":
-                return "Available";
-
-            case "2":
-                return "In service";
-
-            case "0":
-                return "In repair";
-            
-            default:
-                return dbStatus;
-
-        }
-    }
-    //styling for the table 
+    //styling for the table
     //color selection for each of the cells 
      private void styleStatusColumn() {
         statusColumn.setCellFactory(column -> new TableCell<Vehicle, String>() {

@@ -43,7 +43,7 @@ public class VehicleDetailController {
         addRow("Body style", v.getBodyStyle());
         addRow("Condition", v.isUsed() ? "Used" : "New");
         addRow("Mileage", String.format(Locale.US, "%,d mi", v.getMileage()));
-        addRow("Inventory status", v.getCarStatus());
+        addRow("Inventory status", MiscUtilities.mapCarStatus(v.getCarStatus()));
         addRow("Previous owners", Integer.toString(v.getPreviousOwnerCount()));
 
         loadDetailImage(v.getVehicleID());
