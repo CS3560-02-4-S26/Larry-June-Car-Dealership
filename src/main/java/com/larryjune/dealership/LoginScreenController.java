@@ -97,11 +97,6 @@ public class LoginScreenController {
                 stage.show();
             }
 
-            // Otherwise, check if they're an employee
-            ArrayList<Employee> matchingEmployeeAccounts = DBControl.fetchEmployeeAt(
-                "employeeAccountID", accountId, "="
-            );
-
             // Then, check if they're a manager. (This must be done before we check if they're an employee because
             // managers *are* employees).
             ArrayList<Manager> matchingManagerAccounts = DBControl.fetchManagersAt(
@@ -123,6 +118,11 @@ public class LoginScreenController {
             }
 
             // Finally, check if they're an employee
+            // Otherwise, check if they're an employee
+            ArrayList<Employee> matchingEmployeeAccounts = DBControl.fetchEmployeeAt(
+                    "employeeAccountID", accountId, "="
+            );
+
             if (!matchingEmployeeAccounts.isEmpty()) {
                 statusLabel.setText("Employee Login Successful");
 
