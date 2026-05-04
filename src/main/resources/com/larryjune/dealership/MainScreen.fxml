@@ -28,7 +28,7 @@
                      <children>
             
                         <!-- Header -->
-                        <HBox alignment="CENTER_LEFT" prefHeight="111.0" spacing="15.0" style="-fx-background-color: black; -fx-padding: 10 20 10 20;">
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: black; -fx-padding: 10 20 10 20;">
                            <children>
                               <ImageView fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
