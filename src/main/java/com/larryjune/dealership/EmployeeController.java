@@ -1,27 +1,26 @@
 package com.larryjune.dealership;
 
+import com.larryjune.dealership.model.DBControl;
 import com.larryjune.dealership.model.Vehicle;
-import com.larryjune.dealership.model.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ResourceBundle;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import javafx.scene.Node;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
 public class EmployeeController implements Initializable {
@@ -44,8 +43,6 @@ public class EmployeeController implements Initializable {
     @FXML
     private TableColumn<Vehicle, Integer> mileageColumn;
 
-    private final ObservableList<Vehicle> vehicleList = FXCollections.observableArrayList();
-
     @Override
     public void initialize(URL location, ResourceBundle resource){
         
@@ -56,44 +53,16 @@ public class EmployeeController implements Initializable {
         mileageColumn.setCellValueFactory(new PropertyValueFactory<>("mileage"));
 
         styleStatusColumn();
-
         loadVehicleData();
-
-
     }
+
     //fetches vehicle info from database
     //displayes the information in the table 
     private void loadVehicleData(){
-        String sql = "SELECT * FROM vehicleData";
-
-        try (Connection conn = DBConnection.connect();
-         PreparedStatement stmt = conn.prepareStatement(sql);
-         ResultSet rs = stmt.executeQuery()) {
-
-            vehicleList.clear();
-
-             while (rs.next()) {
-            Vehicle v = new Vehicle(
-                    rs.getInt("vehicleID"),
-                    rs.getString("vinNumber"),
-                    rs.getDouble("price"),
-                    rs.getString("maker"),
-                    rs.getString("model"),
-                    rs.getString("color"),
-                    rs.getInt("modelYear"),
-                    rs.getString("bodyStyle"),
-                    rs.getBoolean("isUsed"),
-                    rs.getInt("mileage"),
-                    mapCarStatus(rs.getString("carStatus")),
-                    rs.getInt("prevOwnerCount")
-            );
-
-            vehicleList.add(v);
-        }
-        vehicleTable.setItems(vehicleList);
-
-
-        }catch(Exception e){
+        try {
+            ArrayList<Vehicle> vehicleData = DBControl.fetchVehicleData();
+            vehicleTable.setItems(FXCollections.observableArrayList(vehicleData));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
