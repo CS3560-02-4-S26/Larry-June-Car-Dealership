@@ -10,28 +10,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <!--Employeee UI-->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.EmployeeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.larryjune.dealership.EmployeeController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                <children>
-                  <VBox prefHeight="100.0" prefWidth="254.0">
-                     <children>
-                        <Label style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;" text="Larry June Dealership" />
-                        <Label style="-fx-text-fill: grey; -fx-font-weight: bold;" text="Where the Wheels take you" />
-                     </children>
-                  </VBox>
                   <ImageView fitHeight="99.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@logo.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="17.0" prefWidth="128.0" style="-fx-text-fill: white; -fx-font-weight: bold;" text="Welcome, Employee !" />
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;" text="Larry June Dealership" />
+                        <Label style="-fx-text-fill: grey; -fx-font-weight: bold;" text="Where the Wheels take you" />
+                     </children>
+                  </VBox>
+                  <Region maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+                  <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Welcome, Employee !" />
                </children>
             </HBox>
          </top>
@@ -42,7 +44,7 @@
                 <TableColumn fx:id="yearColumn" prefWidth="119.0" text="Year" />
                   <TableColumn fx:id="vinColumn" minWidth="3.0" prefWidth="112.0" text="Vin" />
                   
-                  <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="120.0" text="Status" />
+                                                <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="120.0" text="Status" />
                   <TableColumn fx:id="mileageColumn" prefWidth="153.0" text="Mileage" />
               </columns>
             </TableView>
@@ -53,42 +55,48 @@
                   <Label prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: transaprent; -fx-font-weight: bold; -fx-padding: 10 12 10 12; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: white;" text="DASHBOARD">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></Label>
-                  <Button fx:id="btnTransaction" mnemonicParsing="false" onAction="#handleTransaction" prefHeight="18.0" prefWidth="97.0" style="-fx-background-color: transparent; -fx-background-radius: 10; -fx-border-color: gold; -fx-border-radius: 10; -fx-text-fill: white;" text="Transactions">
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="btnTransaction" mnemonicParsing="false" onAction="#handleTransaction" style="-fx-background-color: transparent; -fx-background-radius: 10; -fx-border-color: gold; -fx-border-radius: 10; -fx-text-fill: white;" text="Transactions">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
                      <padding>
                         <Insets bottom="10.0" left="12.0" right="12.0" top="10.0" />
-                     </padding></Button>
+                     </padding>
+                  </Button>
                   <Button fx:id="btnAppointment" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: gold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: white;" text="Appointments">
                      <padding>
                         <Insets bottom="10.0" left="12.0" right="12.0" top="10.0" />
                      </padding>
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                  </Button>
                   <Button fx:id="btnDamageRefund" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: gold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: white;" text="Damage / Refund">
                      <padding>
                         <Insets bottom="10.0" left="12.0" right="12.0" top="10.0" />
                      </padding>
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                  </Button>
                   <Button fx:id="btnReports" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: gold; -fx-border-radius: 10; -fx-text-fill: white;" text="Reports / Alerts">
                      <padding>
                         <Insets bottom="10.0" left="12.0" right="12.0" top="10.0" />
                      </padding>
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                  </Button>
                   <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#handleLogout" style="-fx-background-color: transperant; -fx-border-color: gold; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: white;" text="Log Out">
                      <padding>
                         <Insets bottom="10.0" left="12.0" right="12.0" top="10.0" />
                      </padding>
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </left>
